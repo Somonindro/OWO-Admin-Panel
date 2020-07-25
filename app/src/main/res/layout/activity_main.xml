@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="240dp"
+        android:src="@drawable/logo"/>
+
+    <ImageView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/phone"/>
+
+    <EditText
+        android:layout_toRightOf="@+id/phone"
+        android:layout_below="@+id/logo"
+        android:id="@+id/admin_mobile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:hint="Mobile Number"
+        android:inputType="number"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <ImageView
+        android:id="@+id/pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/phone"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/password"/>
+
+    <EditText
+        android:layout_toRightOf="@+id/pass"
+        android:layout_below="@+id/admin_mobile_number"
+        android:id="@+id/admin_pin_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:hint="Pin Number"
+        android:inputType="numberPassword"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/login_btn"
+        android:layout_below="@id/admin_pin_number"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttons"
+        android:text="Login"
+        android:padding="7dp"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        android:textAllCaps="false"
+        android:textStyle="italic"/>
+
+
+</RelativeLayout>

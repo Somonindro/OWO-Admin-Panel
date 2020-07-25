@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">OWO Shop</string>
+
+    <string-array name="home">
+        <item>Create Admin</item>
+        <item>Semi Admins</item>
+        <item>Approve Shop</item>
+        <item>Shops</item>
+        <item>Products</item>
+        <item>Offers</item>
+        <item>Users</item>
+        <item>Message</item>
+    </string-array>
+
+</resources>

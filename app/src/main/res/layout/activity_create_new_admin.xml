@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateNewAdminActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CREATE A NEW ADMIN"
+                android:textStyle="bold|italic"
+                android:textSize="30sp"
+                android:textColor="@android:color/holo_red_light"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
+
+            <EditText
+                android:id="@+id/new_admin_name"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:hint="Name"
+                android:background="@drawable/edittext_design"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:id="@+id/new_admin_phone"
+                android:layout_marginTop="15dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:inputType="number"
+                android:hint="Phone number"
+                android:background="@drawable/edittext_design"
+                android:textSize="20sp"
+                />
+
+            <EditText
+                android:id="@+id/new_admin_pin"
+                android:layout_marginTop="15dp"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:hint="Pin Number"
+                android:inputType="numberPassword"
+                android:background="@drawable/edittext_design"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACCESS"
+                android:textStyle="bold|italic"
+                android:textSize="30sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="1.  Approve Shop"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/approve_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="2.  Maintain Shop"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/maintain_shop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="3.  Add Products"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/add_products"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="4.  Update Products"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/update_products"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="5.  Create Offers"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/create_offers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="6.  Maintain Users"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/maintain_users"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="7.  Messaging"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold|italic"
+                    />
+
+                <Switch
+                    android:id="@+id/messaging"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/create_new_admin_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create new admin"
+                android:textAllCaps="false"
+                android:layout_margin="25dp"
+                android:background="@drawable/buttons"
+                android:textStyle="italic|bold"
+                android:textSize="30sp"
+                android:textColor="@android:color/white"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</LinearLayout>
