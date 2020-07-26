@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ImageView visibility;
     private Boolean isShowPassword = false;
+    private Boolean loginbuttonhandler = true;
     private ProgressBar progressBar;
 
     @Override
@@ -44,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         password = (EditText)findViewById(R.id.admin_password);
         visibility = findViewById(R.id.show_password);
         progressBar = findViewById(R.id.log_in_progress);
+        loginButton.setEnabled(loginbuttonhandler);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginbuttonhandler = false;
                 varify();
             }
         });
@@ -80,18 +83,21 @@ public class MainActivity extends AppCompatActivity {
         {
             email_address.setError("Please enter an email address");
             email_address.requestFocus();
+            loginbuttonhandler = true;
         }
 
         else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
             email_address.setError("Please enter a valid email address");
             email_address.requestFocus();
+            loginbuttonhandler = true;
         }
 
         else if(login_password.isEmpty())
         {
             password.setError("Please enter a password");
             password.requestFocus();
+            loginbuttonhandler = true;
         }
 
         else
@@ -116,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText(MainActivity.this, "Email or password did not match", Toast.LENGTH_SHORT).show();
+                                loginbuttonhandler = true;
                             }
 
                         }
