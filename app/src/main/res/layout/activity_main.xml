@@ -16,24 +16,24 @@
 
     <ImageView
         android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_below="@+id/logo"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/phone"/>
+        android:src="@drawable/mail"/>
 
     <EditText
         android:layout_toRightOf="@+id/phone"
         android:layout_below="@+id/logo"
-        android:id="@+id/admin_mobile_number"
+        android:id="@+id/admin_email_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:hint="Mobile Number"
-        android:inputType="number"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         android:textStyle="italic" />
 
@@ -48,21 +48,21 @@
 
     <EditText
         android:layout_toRightOf="@+id/pass"
-        android:layout_below="@+id/admin_mobile_number"
-        android:id="@+id/admin_pin_number"
+        android:layout_below="@+id/admin_email_address"
+        android:id="@+id/admin_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:hint="Pin Number"
-        android:inputType="numberPassword"
+        android:hint="Password"
+        android:inputType="textPassword"
         android:textSize="24sp"
         android:textStyle="italic" />
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_below="@id/admin_pin_number"
+        android:layout_below="@+id/admin_password"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
