@@ -1,80 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:aapt="http://schemas.android.com/aapt"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="#fff"
+    android:focusableInTouchMode="true"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logo"
+    <LinearLayout
+        android:gravity="bottom|center_vertical|center_horizontal|center"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="240dp"
-        android:src="@drawable/logo"/>
+        android:layout_height="0dp"
+        android:layout_weight="0.7">
 
-    <ImageView
-        android:id="@+id/phone"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_below="@+id/logo"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/mail"/>
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"/>
+    </LinearLayout>
 
-    <EditText
-        android:layout_toRightOf="@+id/phone"
-        android:layout_below="@+id/logo"
-        android:id="@+id/admin_email_address"
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:id="@+id/formHolder"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:textSize="24sp"
-        android:textStyle="italic" />
+        android:layout_height="0dp"
+        android:layout_weight="1.6"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
 
-    <ImageView
-        android:id="@+id/pass"
+        <EditText
+            android:textSize="20sp"
+            android:textColorHint="#666"
+            android:id="@+id/admin_email_address"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="10dp"
+            android:inputType="textEmailAddress"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <EditText
+                android:textSize="20sp"
+                android:textColorHint="#666"
+                android:id="@+id/admin_password"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:drawableLeft="@drawable/ic_input_lock"
+                android:drawablePadding="10dp"
+                android:inputType="textPassword"/>
+
+            <ImageView
+                android:id="@+id/show_password"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_visibility_off"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:textSize="22sp"
+            android:textColor="#fff"
+            android:id="@+id/login_btn"
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF0022"
+            android:layout_marginTop="20dp"
+            android:text="Log In"
+            android:textAllCaps="false"
+            android:elevation="0dp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/log_in_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/phone"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/password"/>
+        android:layout_gravity="center_horizontal"
+        android:indeterminateTint="#ff02"
+        android:visibility="invisible"
+        />
 
-    <EditText
-        android:layout_toRightOf="@+id/pass"
-        android:layout_below="@+id/admin_email_address"
-        android:id="@+id/admin_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="24sp"
-        android:textStyle="italic" />
-
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_below="@+id/admin_password"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/buttons"
-        android:text="Login"
-        android:padding="7dp"
-        android:textColor="@android:color/white"
-        android:textSize="35sp"
-        android:textAllCaps="false"
-        android:textStyle="italic"/>
-
-
-</RelativeLayout>
+</LinearLayout>

@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,13 +21,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
     private EditText email_address, password;
     private FirebaseAuth mAuth;
+    private ImageView visibility;
+    private Boolean isShowPassword = false;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +42,30 @@ public class MainActivity extends AppCompatActivity {
         loginButton=(Button)findViewById(R.id.login_btn);
         email_address = (EditText)findViewById(R.id.admin_email_address);
         password = (EditText)findViewById(R.id.admin_password);
+        visibility = findViewById(R.id.show_password);
+        progressBar = findViewById(R.id.log_in_progress);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 varify();
+            }
+        });
+
+        visibility.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isShowPassword) {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                    visibility.setImageResource(R.drawable.ic_visibility_off);
+                    isShowPassword = false;
+
+                }else{
+                    password.setTransformationMethod(null);
+                    visibility.setImageResource(R.drawable.ic_visibility);
+                    isShowPassword = true;
+                }
             }
         });
 
@@ -72,18 +96,25 @@ public class MainActivity extends AppCompatActivity {
 
         else
         {
+            progressBar.setVisibility(View.VISIBLE);
+
             mAuth.signInWithEmailAndPassword(email, login_password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
+
                                 Toast.makeText(MainActivity.this, "Log in successful", Toast.LENGTH_SHORT).show();
+
                                 Intent intent=new Intent(MainActivity.this,HomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                finish();
                                 startActivity(intent);
 
                             } else {
-                                Toast.makeText(MainActivity.this, "User doesn't exist", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Email or password did not match", Toast.LENGTH_SHORT).show();
                             }
 
                         }
