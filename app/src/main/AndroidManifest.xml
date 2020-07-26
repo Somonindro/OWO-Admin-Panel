@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateNewAdminActivity"></activity>
+        <activity android:name=".SingleShopApprovalActivity"></activity>
+        <activity android:name=".ShopApprovalActivity" />
+        <activity android:name=".UpdateSemiAdminActivity" />
+        <activity android:name=".OffersActivity" />
+        <activity android:name=".SemiAdminActivity" />
+        <activity android:name=".CreateNewAdminActivity" />
         <activity android:name=".ManagementActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">

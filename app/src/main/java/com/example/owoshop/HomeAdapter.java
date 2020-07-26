@@ -54,11 +54,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==1)
                 {
-
+                    Intent intent=new Intent(holder.itemView.getContext(), SemiAdminActivity.class);
+                    holder.itemView.getContext().startActivity(intent);
                 }
                 else if (position==2)
                 {
-
+                    Intent intent=new Intent(holder.itemView.getContext(), ShopApprovalActivity.class);
+                    holder.itemView.getContext().startActivity(intent);
                 }
                 else if (position==3)
                 {
@@ -93,7 +95,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==5)
                 {
-
+                    Intent intent=new Intent(holder.itemView.getContext(), OffersActivity.class);
+                    holder.itemView.getContext().startActivity(intent);
                 }
                 else if (position==6)
                 {
