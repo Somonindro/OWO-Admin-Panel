@@ -91,6 +91,28 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==4)
                 {
+                    CharSequence options[]=new CharSequence[]{"Add Products","Product Availability","Update Products"};
+                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                    builder.setTitle("PRODUCTS");
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (i==0)
+                            {
+                                Intent intent=new Intent(holder.itemView.getContext(), AddProductActivity.class);
+                                holder.itemView.getContext().startActivity(intent);
+                            }
+                            else if(i==1)
+                            {
+
+                            }
+                            else if(i==2)
+                            {
+
+                            }
+                        }
+                    });
+                    builder.show();
 
                 }
                 else if (position==5)
