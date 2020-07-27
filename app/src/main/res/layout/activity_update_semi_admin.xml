@@ -283,7 +283,7 @@
                 android:textAllCaps="false"
                 android:layout_margin="25dp"
                 android:padding="5dp"
-                android:background="@drawable/buttons"
+                android:background="@drawable/buttons_red"
                 android:textStyle="italic|bold"
                 android:textSize="30sp"
                 android:textColor="@android:color/white"
