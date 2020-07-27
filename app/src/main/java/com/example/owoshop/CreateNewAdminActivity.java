@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -21,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.regex.Pattern;
 
 import static com.example.hashing.sha_256.getSHA;
 
@@ -29,10 +30,10 @@ public class CreateNewAdminActivity extends AppCompatActivity {
 
     private Switch approveShop,maintainShop,addProducts,
             updateProducts,createOffers,maintainUsers,messaging;
-
     private EditText newAdminMobileNumber, newAdminPassword, newAdminConfirmPassword;
-
     private Button createNewAdminBtn;
+    private ImageView s_password, s_c_password;
+    private Boolean isShowPassword = false, isShowConfirmPassword = false;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -54,6 +55,42 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         newAdminPassword = (EditText)findViewById(R.id.new_admin_password);
         newAdminConfirmPassword = (EditText)findViewById(R.id.new_admin_confirm_password);
         createNewAdminBtn=(Button)findViewById(R.id.create_new_admin_btn);
+        s_password = findViewById(R.id.show_password);
+        s_c_password = findViewById(R.id.show_confirmed_password);
+
+        s_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isShowPassword) {
+                    newAdminPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    s_password.setImageResource(R.drawable.ic_visibility_off);
+                    isShowPassword = false;
+
+                }else{
+                    newAdminPassword.setTransformationMethod(null);
+                    s_password.setImageResource(R.drawable.ic_visibility);
+                    isShowPassword = true;
+                }
+            }
+        });
+
+        s_c_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isShowConfirmPassword) {
+                    newAdminConfirmPassword.setTransformationMethod(new PasswordTransformationMethod());
+                    s_c_password.setImageResource(R.drawable.ic_visibility_off);
+                    isShowConfirmPassword = false;
+
+                }else{
+                    newAdminConfirmPassword.setTransformationMethod(null);
+                    s_c_password.setImageResource(R.drawable.ic_visibility);
+                    isShowConfirmPassword = true;
+                }
+            }
+        });
 
         createNewAdminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,12 +169,21 @@ public class CreateNewAdminActivity extends AppCompatActivity {
                         myRef.setValue(new_Semi_Admin).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(CreateNewAdminActivity.this, "New Admin added successfully", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(CreateNewAdminActivity.this, HomeActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
+
+                                if(task.isSuccessful())
+                                {
+                                    Toast.makeText(CreateNewAdminActivity.this, "New Admin added successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(CreateNewAdminActivity.this, HomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                                else
+                                {
+                                    Toast.makeText(CreateNewAdminActivity.this, "Operation can not be completed", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                     }
