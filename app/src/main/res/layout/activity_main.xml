@@ -14,6 +14,7 @@
         android:gravity="bottom|center_vertical|center_horizontal|center"
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
         android:layout_height="0dp"
         android:layout_weight="0.7">
 
@@ -21,7 +22,7 @@
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo1"/>
     </LinearLayout>
 
 
@@ -90,8 +91,8 @@
             android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/buttons_red"
-            android:layout_marginTop="20dp"
+            android:background="@drawable/buttons"
+            android:layout_marginTop="25dp"
             android:text="Log In"
             android:textAllCaps="false"
             android:elevation="0dp" />

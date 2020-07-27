@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".SingleProductAddActivity"></activity>
+        <activity android:name=".AddProductActivity" />
         <activity android:name=".SingleShopApprovalActivity" />
         <activity android:name=".ShopApprovalActivity" />
         <activity android:name=".UpdateSemiAdminActivity" />
@@ -19,7 +20,6 @@
         <activity android:name=".ManagementActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity" />
-
         <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
