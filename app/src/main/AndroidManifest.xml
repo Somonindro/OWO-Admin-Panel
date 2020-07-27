@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SingleProductAddActivity"></activity>
+        <activity android:name=".AddProductAdapter" />
         <activity android:name=".AddProductActivity" />
         <activity android:name=".SingleShopApprovalActivity" />
         <activity android:name=".ShopApprovalActivity" />
