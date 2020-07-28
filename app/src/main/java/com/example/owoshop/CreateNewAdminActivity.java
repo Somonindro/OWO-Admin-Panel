@@ -136,6 +136,9 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         else
         {
 
+            //i am editing this line
+            String phone = newAdminMobileNumber.getText().toString();
+
             Boolean approve_shop, maintain_shop, add_products, update_products,
                     create_offers, maintain_users, messaging_;
 
@@ -155,7 +158,7 @@ public class CreateNewAdminActivity extends AppCompatActivity {
 
             else
             {
-                final com.example.model.semi_admins new_Semi_Admin = new com.example.model.semi_admins(approve_shop, maintain_shop,
+                final com.example.model.semi_admins new_Semi_Admin = new com.example.model.semi_admins(phone,approve_shop, maintain_shop,
                         add_products, update_products, create_offers, maintain_users, messaging_);
 
                 final FirebaseAuth mAuth = FirebaseAuth.getInstance();

@@ -64,7 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==3)
                 {
-                    CharSequence options[]=new CharSequence[]{"Management","Orders","Messages"};
+                    CharSequence options[]=new CharSequence[]{"Shop Management","Shop Orders","Shop Messages"};
                     AlertDialog.Builder builder=new AlertDialog.Builder(context);
                     builder.setTitle("SHOPS");
                     builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -104,7 +104,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                             }
                             else if(i==1)
                             {
-
+                                Intent intent=new Intent(holder.itemView.getContext(), ProductAvailabilityActivity.class);
+                                holder.itemView.getContext().startActivity(intent);
                             }
                             else if(i==2)
                             {

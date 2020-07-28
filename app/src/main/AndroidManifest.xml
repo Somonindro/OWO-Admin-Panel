@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SingleProductAddActivity"></activity>
+        <activity android:name=".ProductAvailabilityActivity"></activity>
+        <activity android:name=".SingleProductAddActivity" />
         <activity android:name=".AddProductAdapter" />
         <activity android:name=".AddProductActivity" />
         <activity android:name=".SingleShopApprovalActivity" />

@@ -4,11 +4,13 @@ public class semi_admins {
 
     private Boolean Approve_shop, Maintain_shops,
         Add_products, Update_products, Create_offers, Maintain_users, Messaging;
+    private String Phone;
 
     public semi_admins() {
     }
 
-    public semi_admins(Boolean approve_shop, Boolean maintain_shops, Boolean add_products, Boolean update_products, Boolean create_offers, Boolean maintain_users, Boolean messaging) {
+    public semi_admins(String phone,Boolean approve_shop, Boolean maintain_shops, Boolean add_products, Boolean update_products, Boolean create_offers, Boolean maintain_users, Boolean messaging) {
+        Phone=phone;
         Approve_shop = approve_shop;
         Maintain_shops = maintain_shops;
         Add_products = add_products;
@@ -16,6 +18,14 @@ public class semi_admins {
         Create_offers = create_offers;
         Maintain_users = maintain_users;
         Messaging = messaging;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
     public Boolean getApprove_shop() {
