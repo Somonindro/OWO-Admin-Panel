@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean isShowPassword = false;
     private Boolean loginbuttonhandler = true;
     private ProgressBar progressBar;
+    static String login_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     private void varify() {
 
         String email = email_address.getText().toString();
-        String login_password = password.getText().toString();
+        login_password = password.getText().toString();
 
         if(email.isEmpty())
         {
@@ -121,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
 
                             } else {
-                                Toast.makeText(MainActivity.this, "Email or password did not match", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                                 loginbuttonhandler = true;
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
 
                         }

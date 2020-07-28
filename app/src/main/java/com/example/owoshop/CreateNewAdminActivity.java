@@ -11,20 +11,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.hashing.sha_256;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.security.NoSuchAlgorithmException;
-
-import static com.example.hashing.sha_256.getSHA;
 
 public class CreateNewAdminActivity extends AppCompatActivity {
 
@@ -32,6 +29,8 @@ public class CreateNewAdminActivity extends AppCompatActivity {
             updateProducts,createOffers,maintainUsers,messaging;
     private EditText newAdminMobileNumber, newAdminPassword, newAdminConfirmPassword;
     private Button createNewAdminBtn;
+    private ProgressBar progressBar;
+    private String admin_email;
     private ImageView s_password, s_c_password;
     private Boolean isShowPassword = false, isShowConfirmPassword = false;
 
@@ -57,6 +56,7 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         createNewAdminBtn=(Button)findViewById(R.id.create_new_admin_btn);
         s_password = findViewById(R.id.show_password);
         s_c_password = findViewById(R.id.show_confirmed_password);
+        progressBar = findViewById(R.id.complete_progress);
 
         s_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +95,7 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         createNewAdminBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 verification();
             }
         });
@@ -134,64 +135,87 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         }
         else
         {
-            try {
-                String hashed_password = sha_256.toHexString(getSHA(password));
 
-                Boolean approve_shop, maintain_shop, add_products, update_products,
-                        create_offers, maintain_users, messaging_;
+            Boolean approve_shop, maintain_shop, add_products, update_products,
+                    create_offers, maintain_users, messaging_;
 
-                approve_shop = approveShop.isChecked();
-                maintain_shop = maintainShop.isChecked();
-                add_products = addProducts.isChecked();
-                update_products = updateProducts.isChecked();
-                create_offers = createOffers.isChecked();
-                maintain_users = maintainUsers.isChecked();
-                messaging_ = messaging.isChecked();
+            approve_shop = approveShop.isChecked();
+            maintain_shop = maintainShop.isChecked();
+            add_products = addProducts.isChecked();
+            update_products = updateProducts.isChecked();
+            create_offers = createOffers.isChecked();
+            maintain_users = maintainUsers.isChecked();
+            messaging_ = messaging.isChecked();
 
-                if(!approve_shop && !maintain_shop && !add_products &&
-                        !update_products && !create_offers && !maintain_users && !messaging_)
+            if(!approve_shop && !maintain_shop && !add_products &&
+                    !update_products && !create_offers && !maintain_users && !messaging_)
+            {
+                Toast.makeText(CreateNewAdminActivity.this, "Please enter a permission", Toast.LENGTH_SHORT).show();
+            }
+
+            else
+            {
+                final com.example.model.semi_admins new_Semi_Admin = new com.example.model.semi_admins(approve_shop, maintain_shop,
+                        add_products, update_products, create_offers, maintain_users, messaging_);
+
+                final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                final FirebaseUser user1 = mAuth.getCurrentUser();
+                admin_email = user1.getEmail();
+
+                if(user1 != null)
                 {
-                    Toast.makeText(CreateNewAdminActivity.this, "Please enter a permission", Toast.LENGTH_SHORT).show();
-                }
+                    final DatabaseReference myRef = database.getReference().child("Semi Admins").child(mobile);
 
-                else
-                {
-                    com.example.model.semi_admins new_Semi_Admin = new com.example.model.semi_admins(hashed_password, approve_shop, maintain_shop,
-                            add_products, update_products, create_offers, maintain_users, messaging_);
+                    String email = newAdminMobileNumber.getText().toString()+"@gmail.com";
 
-                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                    FirebaseUser user = mAuth.getCurrentUser();
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()){
 
-                    if(user!=null)
-                    {
-                        DatabaseReference myRef = database.getReference().child("Semi Admins").child(mobile);
+                                        Toast.makeText(CreateNewAdminActivity.this, "New admin authentication successful", Toast.LENGTH_SHORT).show();
 
-                        myRef.setValue(new_Semi_Admin).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                                        FirebaseAuth.getInstance().signOut();
 
-                                if(task.isSuccessful())
-                                {
-                                    Toast.makeText(CreateNewAdminActivity.this, "New Admin added successfully", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(CreateNewAdminActivity.this, HomeActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                    finish();
+                                        FirebaseAuth.getInstance().signInWithEmailAndPassword(admin_email, MainActivity.login_password)
+                                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                                        if(task.isSuccessful())
+                                                        {
+                                                            myRef.setValue(new_Semi_Admin).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                    if(task.isSuccessful())
+                                                                    {
+                                                                        Toast.makeText(CreateNewAdminActivity.this, "New Admin added successfully", Toast.LENGTH_SHORT).show();
+                                                                        Intent intent = new Intent(CreateNewAdminActivity.this, HomeActivity.class);
+                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                                        startActivity(intent);
+                                                                        finish();
+                                                                    }
+
+                                                                    else
+                                                                    {
+                                                                        Toast.makeText(CreateNewAdminActivity.this, "Can not write semi admin access to database", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                });
+                                    }
+                                    else {
+                                        Toast.makeText(CreateNewAdminActivity.this, "Can not authenticate new admin", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
+                            });
 
-                                else
-                                {
-                                    Toast.makeText(CreateNewAdminActivity.this, "Operation can not be completed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
                 }
-
-
-            } catch (NoSuchAlgorithmException e) {
-                Toast.makeText(CreateNewAdminActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
             }
         }
 

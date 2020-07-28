@@ -328,6 +328,17 @@
         </RelativeLayout>
     </ScrollView>
 
+    <ProgressBar
+        android:id="@+id/complete_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/create_new_admin_btn"
+        android:visibility="invisible"
+        />
+
+
     <Button
         android:id="@+id/create_new_admin_btn"
         android:layout_width="match_parent"
