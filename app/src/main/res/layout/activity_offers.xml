@@ -79,7 +79,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/buttons_red"
+        android:background="@drawable/buttons_blue"
         android:textStyle="italic|bold"
         android:textSize="30sp"
         android:textColor="@android:color/white"

@@ -30,8 +30,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="abcd"
-                android:textColor="#171212"
-                android:textSize="16sp"
+                android:textColor="#0026FF"
+                android:textSize="18sp"
                 />
         </LinearLayout>
 
