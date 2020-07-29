@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.model.semi_admins;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -23,6 +24,7 @@ public class SemiAdminActivity extends AppCompatActivity {
 
     private RecyclerView adminsList;
     private DatabaseReference adminsRef;
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +33,16 @@ public class SemiAdminActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        shimmerFrameLayout = findViewById(R.id.shimmer_animation);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.startShimmer();
+
         adminsRef= FirebaseDatabase.getInstance().getReference().child("Semi Admins");
-        adminsList=findViewById(R.id.semi_admin_recyclerviewid);
+        adminsList = findViewById(R.id.semi_admin_recyclerviewid);
+        adminsList.setHasFixedSize(true);
         adminsList.setLayoutManager(new LinearLayoutManager(this));
+
+        adminsList.setVisibility(View.GONE);
 
     }
 
@@ -44,8 +53,17 @@ public class SemiAdminActivity extends AppCompatActivity {
         FirebaseRecyclerOptions<semi_admins> options=
                 new FirebaseRecyclerOptions.Builder<semi_admins>()
                         .setQuery(adminsRef,semi_admins.class).build();
+
         FirebaseRecyclerAdapter<semi_admins,SemiAdminViewHolder> adapter=
                 new FirebaseRecyclerAdapter<semi_admins, SemiAdminViewHolder>(options) {
+
+                    @Override
+                    public void onDataChanged() {
+                        super.onDataChanged();
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                    }
+
                     @Override
                     protected void onBindViewHolder(@NonNull final SemiAdminViewHolder holder, int position, @NonNull semi_admins model) {
 
@@ -75,6 +93,8 @@ public class SemiAdminActivity extends AppCompatActivity {
                     }
                 };
 
+
+        adminsList.setVisibility(View.VISIBLE);
         adminsList.setAdapter(adapter);
         adapter.startListening();
 

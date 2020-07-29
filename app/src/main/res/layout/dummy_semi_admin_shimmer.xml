@@ -46,13 +46,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/add_product_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -71,13 +68,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/approve_shop_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -96,13 +90,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/create_offers_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -121,13 +112,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/maintain_shop_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -146,13 +134,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/maintain_users_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -171,13 +156,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/messaging_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
@@ -196,13 +178,10 @@
                 android:fontFamily="@font/ethnocentric"
                 />
 
-            <TextView
-                android:id="@+id/update_products_switch"
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="yes"
-                android:textColor="#0026FF"
-                android:fontFamily="@font/ethnocentric"
+                android:layout_height="20dp"
+                android:background="@color/grey"
                 />
 
         </LinearLayout>
