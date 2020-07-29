@@ -201,7 +201,7 @@ public class SingleProductAddActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            Intent intent=new Intent(SingleProductAddActivity.this,AddProductActivity.class);
+                            Intent intent=new Intent(SingleProductAddActivity.this, AddProductActivity.class);
                             startActivity(intent);
 
                             loadingbar.dismiss();
