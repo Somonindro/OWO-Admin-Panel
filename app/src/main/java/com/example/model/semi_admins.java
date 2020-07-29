@@ -5,11 +5,15 @@ public class semi_admins {
     private Boolean Approve_shop, Maintain_shops,
         Add_products, Update_products, Create_offers, Maintain_users, Messaging;
     private String Phone;
+    private String profileImage;
+    private String SemiAdminName;
 
     public semi_admins() {
     }
 
-    public semi_admins(String phone,Boolean approve_shop, Boolean maintain_shops, Boolean add_products, Boolean update_products, Boolean create_offers, Boolean maintain_users, Boolean messaging) {
+    public semi_admins(String profileImage, String SemiAdminName, String phone,Boolean approve_shop, Boolean maintain_shops,
+                       Boolean add_products, Boolean update_products, Boolean create_offers, Boolean maintain_users, Boolean messaging) {
+
         Phone=phone;
         Approve_shop = approve_shop;
         Maintain_shops = maintain_shops;
@@ -18,6 +22,24 @@ public class semi_admins {
         Create_offers = create_offers;
         Maintain_users = maintain_users;
         Messaging = messaging;
+        this.profileImage = profileImage;
+        this.SemiAdminName = SemiAdminName;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
+    }
+
+    public String getSemiAdminName() {
+        return SemiAdminName;
+    }
+
+    public void setSemiAdminName(String semiAdminName) {
+        SemiAdminName = semiAdminName;
     }
 
     public String getPhone() {
