@@ -20,7 +20,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="New Admin"
             app:titleEnabled="true"
-            app:maxLines="3"
             app:scrimAnimationDuration="10"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/colorPrimary"
