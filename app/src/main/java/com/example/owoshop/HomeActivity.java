@@ -18,8 +18,11 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    String[] segment;
-    HomeAdapter adapter;
+    static String[] segment;
+    static int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,
+            R.drawable.home5,R.drawable.sale,R.drawable.home7,R.drawable.home8};
+
+    private HomeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +30,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
         recyclerView=findViewById(R.id.recyclerviewid);
-        int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,
-                R.drawable.home5,R.drawable.sale,R.drawable.home7,R.drawable.home8};
+
         segment = getResources().getStringArray(R.array.home);
 
 
-        adapter = new HomeAdapter(segment,icons,HomeActivity.this);
+        adapter = new HomeAdapter(HomeActivity.this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
