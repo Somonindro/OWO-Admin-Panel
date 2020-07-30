@@ -20,13 +20,19 @@ import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
 
-    private List<Pair<String,Integer>> segment1,segment2 = new ArrayList<Pair<String, Integer>>();
+    //private List<Pair<String,Integer>> segment1,segment2 = new ArrayList<Pair<String, Integer>>();
+    private int[] icons;
+    private String[] segment;
     private Context context;
 
-    public HomeAdapter(List<Pair<String,Integer>> segment1,Context context) {
-        this.segment1 = segment1;
+    public HomeAdapter(String[] segment,int[] icons,Context context) {
+        /*this.segment1 = segment1;
         this.context = context;
-        segment2.addAll(segment1);
+        segment2.addAll(segment1);*/
+        this.segment=segment;
+        this.icons=icons;
+        this.context = context;
+
     }
 
     @NonNull
@@ -40,8 +46,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
     @Override
     public void onBindViewHolder(@NonNull final xyz holder, final int position) {
 
-        holder.imageView.setImageResource(segment1.get(position).second);
-        holder.textView.setText(segment1.get(position).first);
+        holder.imageView.setImageResource(icons[position]);
+        holder.textView.setText(segment[position]);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +143,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
 
     @Override
     public int getItemCount() {
-        return segment1.size();
+        return segment.length;
     }
 
 
