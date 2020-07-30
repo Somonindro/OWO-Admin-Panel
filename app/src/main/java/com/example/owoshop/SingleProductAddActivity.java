@@ -47,7 +47,6 @@ public class SingleProductAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_product_add);
 
-        getSupportActionBar().hide();
 
         CategoryName=getIntent().getExtras().get("category").toString();
         ProductImagesRef= FirebaseStorage.getInstance().getReference().child("ProductImage");

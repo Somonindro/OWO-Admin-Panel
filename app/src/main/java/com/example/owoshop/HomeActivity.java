@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        getSupportActionBar().hide();
 
         recyclerView=findViewById(R.id.recyclerviewid);
         int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,

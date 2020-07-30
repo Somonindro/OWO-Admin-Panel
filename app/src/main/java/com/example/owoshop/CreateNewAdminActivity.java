@@ -44,7 +44,7 @@ public class CreateNewAdminActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
 
-    private ImageView s_password, s_c_password, profileImage;
+    private ImageView s_password, s_c_password, profileImage, back_to_home;
 
     private Uri imageuri;
 
@@ -62,8 +62,6 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_admin);
 
-        getSupportActionBar().hide();
-
         approveShop = (Switch)findViewById(R.id.approve_shop);
         maintainShop = (Switch)findViewById(R.id.maintain_shop);
         addProducts = (Switch)findViewById(R.id.add_products);
@@ -80,9 +78,20 @@ public class CreateNewAdminActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.complete_progress);
         profileImage = findViewById(R.id.profileImage);
         newAdminName = findViewById(R.id.new_admin_name);
+        back_to_home = findViewById(R.id.back_to_home);
 
 
         storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("SemiAdmins");
+
+        back_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateNewAdminActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         profileImage.setOnClickListener(new View.OnClickListener() {//For selecting the profile image
 

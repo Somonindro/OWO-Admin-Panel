@@ -21,7 +21,6 @@ public class SingleShopApprovalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_shop_approval);
 
-        getSupportActionBar().hide();
         approveBtn=(Button)findViewById(R.id.approve_btn);
         rejectBtn=(Button)findViewById(R.id.reject_btn);
         unapprovedShopImage=(ImageView)findViewById(R.id.unapproved_shop_image);

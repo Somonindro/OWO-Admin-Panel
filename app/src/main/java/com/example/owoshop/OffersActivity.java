@@ -20,7 +20,6 @@ public class OffersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
-        getSupportActionBar().hide();
 
         createOfferImage=(ImageView)findViewById(R.id.create_offers_image);
         offerName=(EditText)findViewById(R.id.offer_name);

@@ -24,7 +24,6 @@ public class UpdateSemiAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_semi_admin);
 
-        getSupportActionBar().hide();
 
         approveShop=(Switch)findViewById(R.id.clicked_approve_shop);
         maintainShop=(Switch)findViewById(R.id.clicked_maintain_shop);

@@ -31,8 +31,6 @@ public class SemiAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semi_admin);
 
-        getSupportActionBar().hide();
-
         shimmerFrameLayout = findViewById(R.id.shimmer_animation);
         shimmerFrameLayout.setVisibility(View.VISIBLE);
         shimmerFrameLayout.startShimmer();

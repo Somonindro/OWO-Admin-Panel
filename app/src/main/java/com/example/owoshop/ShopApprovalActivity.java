@@ -14,7 +14,6 @@ public class ShopApprovalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_approval);
 
-        getSupportActionBar().hide();
 
         recyclerView=findViewById(R.id.shop_approval_recyclerviewid);
 

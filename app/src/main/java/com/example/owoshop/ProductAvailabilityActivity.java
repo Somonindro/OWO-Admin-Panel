@@ -14,7 +14,6 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_availability);
 
-        getSupportActionBar().hide();
         recyclerView=findViewById(R.id.product_availability_recyclerview_id);
 
         //here will be code for firebase recycler adapter and it will use product_availability_sample.xml to inflate
