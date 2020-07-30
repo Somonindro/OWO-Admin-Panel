@@ -22,7 +22,7 @@
         <activity android:name=".UpdateSemiAdminActivity" />
         <activity android:name=".OffersActivity" />
         <activity android:name=".SemiAdminActivity" />
-        <activity android:name=".CreateNewAdminActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +31,7 @@
         </activity>
         <activity android:name=".ManagementActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".CreateNewAdminActivity" />
         <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat"/>
         <activity android:name=".Splash_screen">

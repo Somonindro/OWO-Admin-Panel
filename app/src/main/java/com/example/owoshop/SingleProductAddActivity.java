@@ -32,7 +32,7 @@ import java.util.HashMap;
 
 public class SingleProductAddActivity extends AppCompatActivity {
 
-    private String CategoryName,Description,Price,Pname,Discount,saveCurrentDate,saveCurrentTime,productRandomKey,downloadImageUrl;;
+    private String CategoryName,Description,Price,Pname,Discount,saveCurrentDate,saveCurrentTime,productRandomKey,downloadImageUrl;
     private Button AddNewProductButton;
     private ImageView InputProductImage;
     private EditText InputProductName,InputProductDescription,InputProductPrice,InputProductDiscount;
