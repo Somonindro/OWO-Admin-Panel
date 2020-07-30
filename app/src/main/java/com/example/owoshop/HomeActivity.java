@@ -20,7 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     static String[] segment;
     static int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,
-            R.drawable.home5,R.drawable.sale,R.drawable.home7,R.drawable.home8};
+            R.drawable.home5, R.drawable.home6, R.drawable.home7,R.drawable.home8};
 
     private HomeAdapter adapter;
 
