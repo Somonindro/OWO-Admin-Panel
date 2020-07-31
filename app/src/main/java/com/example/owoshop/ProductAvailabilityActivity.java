@@ -83,7 +83,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                                         if (i==0)
                                         {
                                             Intent intent=new Intent(holder.itemView.getContext(), UpdateProductActivity.class);
-                                            intent.putExtra("Products", (Serializable) model);
+                                            intent.putExtra("Products",model);
                                             holder.itemView.getContext().startActivity(intent);
 
                                         }

@@ -81,7 +81,7 @@ public class OfferAvailabilityActivity extends AppCompatActivity {
                                         if (i==0)
                                         {
                                             Intent intent=new Intent(holder.itemView.getContext(), UpdateOfferActivity.class);
-                                            intent.putExtra("Offers", (Serializable) model);
+                                            intent.putExtra("Offers",model);
                                             holder.itemView.getContext().startActivity(intent);
 
                                         }

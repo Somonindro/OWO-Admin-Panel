@@ -1,6 +1,8 @@
 package com.example.model;
 
-public class Offers {
+import java.io.Serializable;
+
+public class Offers implements Serializable {
     private String name,startdate,enddate,image,offerid,date,time;
 
     public Offers() {
