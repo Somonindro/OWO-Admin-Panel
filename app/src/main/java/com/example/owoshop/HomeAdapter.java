@@ -111,8 +111,25 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==5)
                 {
-                    Intent intent=new Intent(holder.itemView.getContext(), OffersActivity.class);
-                    holder.itemView.getContext().startActivity(intent);
+                    CharSequence options[]=new CharSequence[]{"Add Offers","Offer Availability"};
+                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                    builder.setTitle("OFFERS");
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (i==0)
+                            {
+                                Intent intent=new Intent(holder.itemView.getContext(), OffersActivity.class);
+                                holder.itemView.getContext().startActivity(intent);
+                            }
+                            else if(i==1)
+                            {
+                                Intent intent=new Intent(holder.itemView.getContext(), OfferAvailabilityActivity.class);
+                                holder.itemView.getContext().startActivity(intent);
+                            }
+                        }
+                    });
+                    builder.show();
                 }
                 else if (position==6)
                 {
