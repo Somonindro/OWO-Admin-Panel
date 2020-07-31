@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.model.semi_admins;
@@ -19,10 +20,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SemiAdminActivity extends AppCompatActivity {
 
     private RecyclerView adminsList;
+    private ImageView back_button_to_home;
     private DatabaseReference adminsRef;
     private ShimmerFrameLayout shimmerFrameLayout;
 
@@ -35,12 +40,22 @@ public class SemiAdminActivity extends AppCompatActivity {
         shimmerFrameLayout.setVisibility(View.VISIBLE);
         shimmerFrameLayout.startShimmer();
 
-        adminsRef= FirebaseDatabase.getInstance().getReference().child("Semi Admins");
         adminsList = findViewById(R.id.semi_admin_recyclerviewid);
+        back_button_to_home = findViewById(R.id.back_from_semi_admins);
+
+        adminsRef= FirebaseDatabase.getInstance().getReference().child("Semi Admins");
         adminsList.setHasFixedSize(true);
         adminsList.setLayoutManager(new LinearLayoutManager(this));
 
         adminsList.setVisibility(View.GONE);
+
+
+        back_button_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SemiAdminActivity.super.onBackPressed();
+            }
+        });
 
     }
 
@@ -65,14 +80,9 @@ public class SemiAdminActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull final SemiAdminViewHolder holder, int position, @NonNull semi_admins model) {
 
+                        Picasso.get().load(model.getProfileImage()).into(holder.profile_pic);
+                        holder.Name.setText(model.getSemiAdminName());
                         holder.Phone.setText(model.getPhone());
-                        if (!model.getApprove_shop()) holder.Approve_shop.setText("No");
-                        if (!model.getMaintain_shops()) holder.Maintain_shops.setText("No");
-                        if (!model.getAdd_products()) holder.Add_products.setText("No");
-                        if (!model.getUpdate_products()) holder.Update_products.setText("No");
-                        if (!model.getCreate_offers()) holder.Create_offers.setText("No");
-                        if (!model.getMaintain_users()) holder.Maintain_users.setText("No");
-                        if (!model.getMessaging()) holder.Messaging.setText("No");
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -100,20 +110,15 @@ public class SemiAdminActivity extends AppCompatActivity {
 
     public static class SemiAdminViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView Phone,Approve_shop, Maintain_shops,
-                Add_products, Update_products, Create_offers, Maintain_users, Messaging;
+        public TextView Name, Phone;
+        public CircleImageView profile_pic;
+
         public SemiAdminViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Phone=itemView.findViewById(R.id.semi_admin_phone);
-            Approve_shop=itemView.findViewById(R.id.approve_shop_switch);
-            Maintain_shops=itemView.findViewById(R.id.maintain_shop_switch);
-            Add_products=itemView.findViewById(R.id.add_product_switch);
-            Update_products=itemView.findViewById(R.id.update_products_switch);
-            Create_offers=itemView.findViewById(R.id.create_offers_switch);
-            Maintain_users=itemView.findViewById(R.id.maintain_users_switch);
-            Messaging=itemView.findViewById(R.id.messaging_switch);
-
+            Name = itemView.findViewById(R.id.semi_admin_name);
+            Phone = itemView.findViewById(R.id.semi_admin_mobile_number);
+            profile_pic = itemView.findViewById(R.id.semi_admin_profile_image);
         }
     }
 
