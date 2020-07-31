@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
+
 public class ProductAvailabilityActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -56,7 +58,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Products,ProductViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull Products model) {
+                    protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull final Products model) {
                         holder.txtProductName.setText(model.getPname());
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = "+ model.getPrice()+"Tk."+"(Discount "+model.getDiscount()+"Tk.)");
@@ -81,6 +83,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                                         if (i==0)
                                         {
                                             Intent intent=new Intent(holder.itemView.getContext(), UpdateProductActivity.class);
+                                            intent.putExtra("Products", (Serializable) model);
                                             holder.itemView.getContext().startActivity(intent);
 
                                         }

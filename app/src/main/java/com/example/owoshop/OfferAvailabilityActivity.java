@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
+
 public class OfferAvailabilityActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -54,7 +56,7 @@ public class OfferAvailabilityActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Offers, OfferAvailabilityActivity.OfferViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Offers, OfferViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull final OfferViewHolder holder, int position, @NonNull Offers model) {
+                    protected void onBindViewHolder(@NonNull final OfferViewHolder holder, int position, @NonNull final Offers model) {
                         holder.txtOfferName.setText(model.getName());
                         holder.txtOfferStartDate.setText("Start Date: "+model.getStartdate());
                         holder.txtOfferEndDate.setText("End Date: "+model.getEnddate());
@@ -79,6 +81,7 @@ public class OfferAvailabilityActivity extends AppCompatActivity {
                                         if (i==0)
                                         {
                                             Intent intent=new Intent(holder.itemView.getContext(), UpdateOfferActivity.class);
+                                            intent.putExtra("Offers", (Serializable) model);
                                             holder.itemView.getContext().startActivity(intent);
 
                                         }
