@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OWO Shop</string>
+    <string name="app_name">OWO DOKAN Super Admin</string>
 
     <string-array name="home">
         <item>Create Admin</item>
