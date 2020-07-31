@@ -1,134 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".UpdateSemiAdminActivity">
 
-    <TextView
-        android:id="@+id/slogan1"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SEMI ADMIN"
-        android:textSize="30sp"
-        android:textColor="#0026FF"
-        android:background="#9251B6F4"
-        android:padding="10dp"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:fontFamily="@font/ethnocentric" />
+        android:layout_height="350dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="Semi Admin"
+            app:titleEnabled="true"
+            app:scrimAnimationDuration="10"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginBottom="15dp"
+            app:expandedTitleMarginEnd="20dp"
+            app:expandedTitleMarginStart="25dp"
+            app:expandedTitleMarginTop="0dp"
+            app:expandedTitleGravity="bottom"
+            app:expandedTitleTextAppearance="@style/CollapsingToolbarLayoutExpandedTextStyle"
+            app:collapsedTitleTextAppearance="@style/CollapsingToolbarLayoutCollapsedTextStyle"
+            >
 
 
-    <RelativeLayout
-        android:id="@+id/relative1"
+            <ImageView
+                android:id="@+id/clicked_admin_profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/person"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/z_toolbar"
+                android:background="@android:color/transparent"
+                android:paddingEnd = "15dp"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:background="#00F0F8FF"
+                    android:layout_width="40dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:id="@+id/back_to_home"
+                        android:background="?attr/actionBarItemBackground"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_baseline_arrow_back_24"
+                        android:tint="#000"/>
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slogan1">
-
-        <TextView
-            android:id="@+id/txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:fontFamily="@font/ethnocentric"
-            android:text="Phone:  "
-            android:textColor="#0026FF"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/clicked_admin_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/txt1"
-            android:fontFamily="@font/ethnocentric"
-            android:text="01234567891"
-            android:textColor="#0026FF"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/relative2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relative1">
-
-            <TextView
-                android:id="@+id/txt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="Password:  "
-                android:fontFamily="@font/ethnocentric"
-                android:textColor="#0026FF"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/clicked_admin_pin"
-                android:layout_toRightOf="@+id/txt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1234"
-                android:fontFamily="@font/ethnocentric"
-                android:textColor="#0026FF"
-                android:textSize="20sp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="italic" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/slogan2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/relative2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="ROLES"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="#0026FF"
-        android:padding="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="10dp"
-        android:background="#8651B6F4"
-        android:fontFamily="@font/ethnocentric"/>
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/create_new_admin_btn"
-        app:layout_constraintTop_toBottomOf="@+id/slogan2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:padding="12dp">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="80dp"
             >
+
+            <TextView
+                android:id="@+id/clicked_admin_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Admin Name"
+                android:fontFamily="@font/ethnocentric"
+                android:textSize="30sp"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:id="@+id/clicked_admin_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/clicked_admin_name"
+                android:fontFamily="@font/ethnocentric"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textAlignment="textStart"
+                android:text="01731304074"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/slogan2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/clicked_admin_mobile"
+                android:text="ACCESS"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textColor="#0026FF"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:background="#8651B6F4"
+                android:fontFamily="@font/ethnocentric"/>
+
+
 
             <LinearLayout
                 android:id="@+id/linear1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true">
+                android:layout_below="@+id/slogan2"
+                >
 
                 <TextView
                     android:layout_width="250dp"
@@ -274,7 +277,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@id/linear6">
@@ -293,25 +296,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-        </RelativeLayout>
-    </ScrollView>
 
-    <Button
-        android:id="@+id/update_admin_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Update admin"
-        android:layout_margin="5dp"
-        android:background="@drawable/buttons_blue"
-        android:textSize="25sp"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/ethnocentric"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/update_admin_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update Admin Info"
+                android:background="@drawable/buttons_blue"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/ethnocentric"
+                android:layout_gravity="center"
+                android:layout_below="@id/linear7"
+                />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <ProgressBar
+        android:id="@+id/clicked_complete_progress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
+        android:visibility="gone"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

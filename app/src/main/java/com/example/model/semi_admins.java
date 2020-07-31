@@ -1,9 +1,12 @@
 package com.example.model;
 
-public class semi_admins {
+import java.io.Serializable;
+
+public class semi_admins implements Serializable {
 
     private Boolean Approve_shop, Maintain_shops,
         Add_products, Update_products, Create_offers, Maintain_users, Messaging;
+
     private String Phone;
     private String profileImage;
     private String SemiAdminName;

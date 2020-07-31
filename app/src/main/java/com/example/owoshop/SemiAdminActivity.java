@@ -78,7 +78,7 @@ public class SemiAdminActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    protected void onBindViewHolder(@NonNull final SemiAdminViewHolder holder, int position, @NonNull semi_admins model) {
+                    protected void onBindViewHolder(@NonNull final SemiAdminViewHolder holder, int position, @NonNull final semi_admins model) {
 
                         Picasso.get().load(model.getProfileImage()).into(holder.profile_pic);
                         holder.Name.setText(model.getSemiAdminName());
@@ -87,8 +87,9 @@ public class SemiAdminActivity extends AppCompatActivity {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent=new Intent(holder.itemView.getContext(), UpdateSemiAdminActivity.class);
-                                holder.itemView.getContext().startActivity(intent);
+                                Intent intent = new Intent(SemiAdminActivity.this, UpdateSemiAdminActivity.class);
+                                intent.putExtra("Semi Admin", model);
+                                startActivity(intent);
                             }
                         });
                     }
