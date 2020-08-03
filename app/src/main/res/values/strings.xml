@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">OWO DOKAN Super Admin</string>
+    <string name="maps_api_key">AIzaSyBOwbWr9F55eVhebZtVMhuWHNG4a52FM84</string>
+
 
     <string-array name="home">
         <item>Create Admin</item>
@@ -55,5 +57,6 @@
         <item>Beverages</item>
         <item>Office Products</item>
     </string-array>
+    <string name="title_activity_location_from_map">Map</string>
 
 </resources>
