@@ -38,38 +38,77 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
-        android:hint="Offer :"
+        android:hint="Offer Title"
         android:background="@drawable/edittext_design"
         android:textSize="20sp"
         />
 
-    <EditText
-        android:id="@+id/offer_start_date"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp"
-        android:hint="Start date :"
-        android:background="@drawable/edittext_design"
-        android:textSize="20sp"
-        android:inputType="date"
-        />
 
-    <EditText
-        android:id="@+id/offer_end_date"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="18dp"
-        android:hint="End date :"
-        android:background="@drawable/edittext_design"
-        android:textSize="20sp"
-        android:inputType="date"
-        />
+        >
+
+        <EditText
+            android:id="@+id/offer_start_date"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Start date (DD:MM:YYYY)"
+            android:background="@drawable/edittext_design"
+            android:textSize="20sp"
+            android:inputType="date"
+            />
+
+        <ImageView
+            android:id="@+id/start_date_picker"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_baseline_date_range_24"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/offer_start_date"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        >
+
+        <EditText
+            android:id="@+id/offer_end_date"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="End date (DD:MM:YYYY) "
+            android:background="@drawable/edittext_design"
+            android:textSize="20sp"
+            android:inputType="date"
+            />
+
+
+        <ImageView
+            android:id="@+id/end_date_picker"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_baseline_date_range_24"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignBottom="@+id/offer_end_date"
+            />
+
+    </RelativeLayout>
+
+
+
 
     <Button
         android:id="@+id/create_offer_btn"

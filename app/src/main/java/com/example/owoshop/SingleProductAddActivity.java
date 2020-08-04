@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
@@ -28,14 +29,16 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Formatter;
 import java.util.HashMap;
 
 public class SingleProductAddActivity extends AppCompatActivity {
 
     private String CategoryName,Description,Price,Pname,Discount,saveCurrentDate,saveCurrentTime,productRandomKey,downloadImageUrl;
-    private Button AddNewProductButton;
+    private Button AddNewProductButton, preview_new_product, calculate_discount;
     private ImageView InputProductImage;
     private EditText InputProductName,InputProductDescription,InputProductPrice,InputProductDiscount;
+    private TextView discounted_price;
     private static final int GalleryPick=1;
     private Uri ImageUri;
     private StorageReference ProductImagesRef;
@@ -46,19 +49,89 @@ public class SingleProductAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_product_add);
-
-
+/*
         CategoryName=getIntent().getExtras().get("category").toString();
         ProductImagesRef= FirebaseStorage.getInstance().getReference().child("ProductImage");
         ProductsRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
+
+ */
         AddNewProductButton=(Button)findViewById(R.id.add_new_product);
         InputProductImage=(ImageView) findViewById(R.id.select_product_image);
         InputProductName=(EditText)findViewById(R.id.product_name);
         InputProductDescription=(EditText)findViewById(R.id.product_description);
         InputProductDiscount=(EditText)findViewById(R.id.product_discount);
         InputProductPrice=(EditText)findViewById(R.id.product_price);
+        preview_new_product = findViewById(R.id.preview_new_product);
+        discounted_price = findViewById(R.id.discounted_price);
+        calculate_discount = findViewById(R.id.calculate_discount);
+
         loadingbar=new ProgressDialog(this);
+
+        preview_new_product.setOnClickListener(new View.OnClickListener() {// Have to give product preview
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        calculate_discount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String price = InputProductPrice.getText().toString();
+                String discount = InputProductDiscount.getText().toString();
+
+                if(price.isEmpty())
+                {
+                    InputProductPrice.setError("Product Price can not be empty");
+                    InputProductPrice.requestFocus();
+                    InputProductDiscount.setError(null);
+                }
+                else if(discount.isEmpty())
+                {
+                    InputProductDiscount.setError("Product Discount Can Not Be Empty");
+                    InputProductDiscount.requestFocus();
+                    InputProductPrice.setError(null);
+                }
+
+                else
+                {
+                    InputProductPrice.setError(null);
+                    InputProductDiscount.setError(null);
+
+                    double product_price = Double.parseDouble(price);
+                    double product_discount = Double.parseDouble(discount);
+
+                    if(product_price < 0)
+                    {
+                        InputProductPrice.setError("Product price can not be negative");
+                        InputProductPrice.requestFocus();
+                        return;
+                    }
+
+                    else if(product_discount < 0)
+                    {
+                        InputProductDiscount.setError("Product discount can not be negative");
+                        InputProductDiscount.requestFocus();
+                        return;
+                    }
+
+                    else if(product_discount > product_price)
+                    {
+                        InputProductDiscount.setError("Product discount can not be greater than price");
+                        InputProductDiscount.requestFocus();
+                        return;
+                    }
+
+                    double discount_price = product_price - product_discount;
+                    double discount_percentage = (product_discount/product_price) * 100.00;
+
+                    discounted_price.setText("৳ "+ String.valueOf(discount_price) +
+                            "( "+String.format("%.2f", discount_percentage)+ "% )");
+                }
+            }
+        });
 
         InputProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
