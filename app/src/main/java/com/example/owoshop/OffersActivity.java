@@ -28,8 +28,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -86,11 +88,12 @@ public class OffersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                state = 1;
+
                 new DatePickerDialog(OffersActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-                state = 1;
 
             }
         });
@@ -100,11 +103,12 @@ public class OffersActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                state = 2;
+
                 new DatePickerDialog(OffersActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-                state = 2;
 
             }
         });
@@ -159,9 +163,9 @@ public class OffersActivity extends AppCompatActivity {
 
     private void ValidateOfferData() {
 
-        OfferName=offerName.getText().toString();
-        StartDate=offerStartDate.getText().toString();
-        EndDate=offerEndDate.getText().toString();
+        OfferName = offerName.getText().toString();
+        StartDate = offerStartDate.getText().toString();
+        EndDate = offerEndDate.getText().toString();
 
         if(ImageUri==null)
         {
@@ -179,7 +183,24 @@ public class OffersActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Please write offer end date...", Toast.LENGTH_SHORT).show();
         }
+
         else {
+
+            try {
+                Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(StartDate);
+                Date date2 = new SimpleDateFormat("dd/MM/yyyy").parse(EndDate);
+
+                if(date1.after(date2))
+                {
+                    Toast.makeText(this, "Start date can not be less than end date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return;
+            }
+
+
             StoreOfferInformation();
         }
     }
