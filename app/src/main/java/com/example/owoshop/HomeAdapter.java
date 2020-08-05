@@ -3,20 +3,15 @@ package com.example.owoshop;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
 
@@ -119,12 +114,12 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         public void onClick(DialogInterface dialog, int i) {
                             if (i==0)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), OffersActivity.class);
+                                Intent intent=new Intent(holder.itemView.getContext(), CreateOffersActivity.class);
                                 holder.itemView.getContext().startActivity(intent);
                             }
                             else if(i==1)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), OfferAvailabilityActivity.class);
+                                Intent intent=new Intent(holder.itemView.getContext(), AvilableOffersActivity.class);
                                 holder.itemView.getContext().startActivity(intent);
                             }
                         }

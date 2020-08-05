@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OfferAvailabilityActivity">
+    tools:context=".AvilableOffersActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/z_toolbar"
@@ -42,4 +42,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/offer_availability_recyclerview_id"/>
+
 </LinearLayout>

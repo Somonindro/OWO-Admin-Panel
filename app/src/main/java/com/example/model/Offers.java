@@ -4,12 +4,13 @@ import java.io.Serializable;
 
 public class Offers implements Serializable {
     private String name, startdate, enddate, image, offerid, date, time;
+    private Boolean availability;
 
     public Offers() {
 
     }
 
-    public Offers(String name, String startdate, String enddate, String image, String offerid, String date, String time) {
+    public Offers(String name, String startdate, String enddate, String image, String offerid, String date, String time, Boolean availability) {
         this.name = name;
         this.startdate = startdate;
         this.enddate = enddate;
@@ -17,6 +18,15 @@ public class Offers implements Serializable {
         this.offerid = offerid;
         this.date = date;
         this.time = time;
+        this.availability = availability;
+    }
+
+    public Boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
     }
 
     public String getName() {

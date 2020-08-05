@@ -5,20 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".OffersActivity">
+    tools:context=".CreateOffersActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="CREATE OFFERS"
-        android:textStyle="bold|italic"
-        android:textColor="#2077F3"
-        android:textSize="22sp"
-        android:fontFamily="@font/ethnocentric"
-        android:padding="10dp"
-        android:layout_marginTop="10dp"
-        />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageView
+            android:id="@+id/back_to_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24_white"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CREATE OFFERS"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/ethnocentric"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+
+
 
     <ImageView
         android:id="@+id/create_offers_image"

@@ -33,15 +33,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 
-public class OffersActivity extends AppCompatActivity {
+public class CreateOffersActivity extends AppCompatActivity {
 
     private String StartDate,EndDate,OfferName,saveCurrentDate,saveCurrentTime,OfferRandomKey,downloadImageUrl;
 
-    private ImageView createOfferImage, offer_start_date_picker, offer_end_date_picker;
+    private ImageView createOfferImage, offer_start_date_picker, offer_end_date_picker, back_to_home;
     private EditText offerName,offerStartDate,offerEndDate;
     private Button createOfferBtn;
 
@@ -57,7 +56,7 @@ public class OffersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offers);
+        setContentView(R.layout.activity_create_offers);
 
         OfferImagesRef= FirebaseStorage.getInstance().getReference().child("OfferImage");
         OffersRef= FirebaseDatabase.getInstance().getReference().child("Offers");
@@ -69,6 +68,7 @@ public class OffersActivity extends AppCompatActivity {
         createOfferBtn=(Button)findViewById(R.id.create_offer_btn);
         offer_start_date_picker = findViewById(R.id.start_date_picker);
         offer_end_date_picker = findViewById(R.id.end_date_picker);
+        back_to_home = findViewById(R.id.back_to_home);
 
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -93,7 +93,7 @@ public class OffersActivity extends AppCompatActivity {
 
                 state = 1;
 
-                new DatePickerDialog(OffersActivity.this, date, myCalendar
+                new DatePickerDialog(CreateOffersActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
@@ -108,11 +108,21 @@ public class OffersActivity extends AppCompatActivity {
 
                 state = 2;
 
-                new DatePickerDialog(OffersActivity.this, date, myCalendar
+                new DatePickerDialog(CreateOffersActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
 
+            }
+        });
+
+        back_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateOffersActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -233,13 +243,13 @@ public class OffersActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 String message=e.toString();
-                Toast.makeText(OffersActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateOffersActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                 loadingbar.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(OffersActivity.this, "Offer Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateOffersActivity.this, "Offer Image uploaded successfully", Toast.LENGTH_SHORT).show();
                 Task<Uri> urlTask=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -259,7 +269,7 @@ public class OffersActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             downloadImageUrl=task.getResult().toString();
-                            Toast.makeText(OffersActivity.this, "Got the Offer image url Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateOffersActivity.this, "Got the Offer image url Successfully", Toast.LENGTH_SHORT).show();
                             SaveOfferInfoToDatabase();
                         }
                     }
@@ -270,7 +280,7 @@ public class OffersActivity extends AppCompatActivity {
 
     private void SaveOfferInfoToDatabase() {
 
-        Offers offers = new Offers(OfferName, StartDate, EndDate, downloadImageUrl, OfferRandomKey, saveCurrentDate, saveCurrentTime);
+        Offers offers = new Offers(OfferName, StartDate, EndDate, downloadImageUrl, OfferRandomKey, saveCurrentDate, saveCurrentTime, true);
 
         OffersRef.child(OfferRandomKey).setValue(offers)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -278,16 +288,16 @@ public class OffersActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            Intent intent=new Intent(OffersActivity.this, HomeActivity.class);
+                            Intent intent=new Intent(CreateOffersActivity.this, HomeActivity.class);
                             startActivity(intent);
 
                             loadingbar.dismiss();
-                            Toast.makeText(OffersActivity.this, "Offer is added successfully...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateOffersActivity.this, "Offer is added successfully...", Toast.LENGTH_SHORT).show();
                         }
                         else {
                             loadingbar.dismiss();
                             String message= Objects.requireNonNull(task.getException()).toString();
-                            Toast.makeText(OffersActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateOffersActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
