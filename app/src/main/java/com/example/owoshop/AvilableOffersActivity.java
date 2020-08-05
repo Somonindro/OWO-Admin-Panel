@@ -18,6 +18,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.model.Offers;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +31,17 @@ public class AvilableOffersActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private DatabaseReference OffersRef;
     private ImageView back_to_home;
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avilable_offers);
+
+
+        shimmerFrameLayout = findViewById(R.id.shimmer_avilable_offer);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.startShimmer();
 
         OffersRef = FirebaseDatabase.getInstance().getReference().child("Offers");
 
@@ -67,6 +74,14 @@ public class AvilableOffersActivity extends AppCompatActivity {
 
         FirebaseRecyclerAdapter<Offers, AvilableOffersActivity.OfferViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Offers, OfferViewHolder>(options) {
+
+                    @Override
+                    public void onDataChanged() {
+                        super.onDataChanged();
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                    }
+
                     @Override
                     protected void onBindViewHolder(@NonNull final OfferViewHolder holder, int position, @NonNull final Offers model) {
 
