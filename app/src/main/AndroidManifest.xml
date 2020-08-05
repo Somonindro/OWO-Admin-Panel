@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.owoshop">
+    package="com.OwoDokan.owoshop">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -27,18 +27,18 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".LocationFromMap"
+            android:name="com.OwoDokan.owoshop.LocationFromMap"
             android:label="@string/title_activity_location_from_map" />
 
-        <activity android:name=".Product_details">
+        <activity android:name="com.OwoDokan.owoshop.Product_details">
 
         </activity>
 
-        <activity android:name=".DummyPendingShopActivity" />
+        <activity android:name="com.OwoDokan.owoshop.DummyPendingShopActivity" />
 
-        <activity android:name=".UpdateOfferActivity" />
+        <activity android:name="com.OwoDokan.owoshop.UpdateOfferActivity" />
 
-        <activity android:name=".AvilableOffersActivity">
+        <activity android:name="com.OwoDokan.owoshop.AvilableOffersActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,41 +48,41 @@
 
         </activity>
 
-        <activity android:name=".UpdateProductActivity" />
+        <activity android:name="com.OwoDokan.owoshop.UpdateProductActivity" />
 
-        <activity android:name=".ProductAvailabilityActivity" />
+        <activity android:name="com.OwoDokan.owoshop.ProductAvailabilityActivity" />
 
-        <activity android:name=".SingleProductAddActivity"/>
+        <activity android:name="com.OwoDokan.owoshop.SingleProductAddActivity"/>
 
-        <activity android:name=".AddProductAdapter" />
+        <activity android:name="com.OwoDokan.owoshop.AddProductAdapter" />
 
-        <activity android:name=".AddProductActivity" />
+        <activity android:name="com.OwoDokan.owoshop.AddProductActivity" />
 
-        <activity android:name=".SingleShopApprovalActivity" />
+        <activity android:name="com.OwoDokan.owoshop.SingleShopApprovalActivity" />
 
-        <activity android:name=".ShopApprovalActivity" />
+        <activity android:name="com.OwoDokan.owoshop.ShopApprovalActivity" />
 
-        <activity android:name=".UpdateSemiAdminActivity" />
+        <activity android:name="com.OwoDokan.owoshop.UpdateSemiAdminActivity" />
 
-        <activity android:name=".CreateOffersActivity">
+        <activity android:name="com.OwoDokan.owoshop.CreateOffersActivity">
 
         </activity>
 
-        <activity android:name=".SemiAdminActivity" />
+        <activity android:name="com.OwoDokan.owoshop.SemiAdminActivity" />
 
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.OwoDokan.owoshop.MainActivity" />
 
-        <activity android:name=".ManagementActivity" />
+        <activity android:name="com.OwoDokan.owoshop.ManagementActivity" />
 
-        <activity android:name=".HomeActivity" />
+        <activity android:name="com.OwoDokan.owoshop.HomeActivity" />
 
-        <activity android:name=".CreateNewAdminActivity" />
+        <activity android:name="com.OwoDokan.owoshop.CreateNewAdminActivity" />
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
 
-        <activity android:name=".Splash_screen"/>
+        <activity android:name="com.OwoDokan.owoshop.Splash_screen"/>
 
     </application>
 
