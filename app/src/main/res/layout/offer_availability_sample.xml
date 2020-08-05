@@ -3,43 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    app:cardElevation="15dp"
-    android:padding="8dp"
-    app:cardBackgroundColor="#D6D0D0"
-    app:cardCornerRadius="10dp">
+    android:layout_margin="5dp"
+    app:cardElevation="8dp"
+    android:padding="5dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="@color/grey"
+    app:cardCornerRadius="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/l1"
-            android:layout_margin="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/offer_name_id"
-                android:layout_width="270dp"
-                android:layout_height="wrap_content"
-                android:text="Offer Name"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold|italic"/>
-
-            <Switch
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/offer_availability_switch"
-                android:layout_marginLeft="10dp"
-                android:checked="true"
-                />
-
-        </LinearLayout>
-
-
 
         <ImageView
             android:id="@+id/offer_image_id"
@@ -47,15 +20,29 @@
             android:layout_height="200dp"
             android:layout_below="@+id/l1"
             android:scaleType="fitXY"
+            android:src="@drawable/person"
             android:layout_margin="5dp"/>
 
         <TextView
+            android:id="@+id/offer_name_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Offer Name"
+            android:textSize="25sp"
+            android:maxLines="1"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:layout_below="@+id/offer_image_id"/>
+
+
+        <TextView
             android:id="@+id/start_date"
-            android:layout_below="@+id/offer_image_id"
+            android:layout_below="@+id/offer_name_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Start Date"
-            android:textAlignment="center"
+            android:layout_marginStart="5dp"
             android:textSize="18sp"
             android:textColor="@color/colorPrimary" />
 
@@ -64,12 +51,23 @@
             android:layout_below="@+id/start_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="End Date"
             android:layout_marginTop="3dp"
             android:layout_marginBottom="5dp"
-            android:textAlignment="center"
             android:textSize="18sp"
             android:textColor="@color/colorPrimary" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/offer_name_id"
+            android:id="@+id/offer_availability_switch"
+            android:layout_marginLeft="10dp"
+            android:checked="true"
+            android:theme="@style/SCBSwitch"
+            />
 
     </RelativeLayout>
 

@@ -7,23 +7,39 @@
     android:orientation="vertical"
     tools:context=".OfferAvailabilityActivity">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/z_toolbar"
+        android:background="@color/colorPrimary"
+        android:paddingEnd = "15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Offer Availability"
-        android:fontFamily="@font/ethnocentric"
-        android:layout_margin="20dp"
-        android:textColor="#0026FF"
-        android:textSize="25sp"
-        android:textStyle="italic"
-        />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        >
+
+
+        <ImageView
+            android:id="@+id/back_to_home"
+            android:background="?attr/actionBarItemBackground"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_arrow_back_24_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Offers"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp"
+            android:layout_marginStart="10dp"/>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/offer_availability_recyclerview_id">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:id="@+id/offer_availability_recyclerview_id"/>
 </LinearLayout>

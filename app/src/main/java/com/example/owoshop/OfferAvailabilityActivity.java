@@ -31,8 +31,9 @@ import java.io.Serializable;
 public class OfferAvailabilityActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.LayoutManager layoutManager;
     private DatabaseReference OffersRef;
+    private ImageView back_to_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,20 @@ public class OfferAvailabilityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_offer_availability);
 
         OffersRef = FirebaseDatabase.getInstance().getReference().child("Offers");
+
+        back_to_home = findViewById(R.id.back_to_home);
+
+
+        back_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OfferAvailabilityActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         recyclerView=findViewById(R.id.offer_availability_recyclerview_id);
         recyclerView.setHasFixedSize(true);
@@ -50,9 +65,11 @@ public class OfferAvailabilityActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         FirebaseRecyclerOptions<Offers> options = new FirebaseRecyclerOptions.Builder<Offers>()
                 .setQuery(OffersRef, Offers.class)
                 .build();
+
         FirebaseRecyclerAdapter<Offers, OfferAvailabilityActivity.OfferViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Offers, OfferViewHolder>(options) {
                     @Override

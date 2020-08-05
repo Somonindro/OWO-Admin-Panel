@@ -38,7 +38,15 @@
 
         <activity android:name=".UpdateOfferActivity" />
 
-        <activity android:name=".OfferAvailabilityActivity" />
+        <activity android:name=".OfferAvailabilityActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <activity android:name=".UpdateProductActivity" />
 
@@ -57,12 +65,6 @@
         <activity android:name=".UpdateSemiAdminActivity" />
 
         <activity android:name=".OffersActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
