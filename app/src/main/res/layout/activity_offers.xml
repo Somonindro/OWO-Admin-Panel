@@ -24,10 +24,11 @@
         android:id="@+id/create_offers_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
         android:scaleType="fitXY"
-        android:padding="10dp"
-        android:layout_margin="8dp"
         android:src="@drawable/offers"
+        android:background="@drawable/edittext_design"
         />
 
     <EditText

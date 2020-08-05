@@ -3,7 +3,7 @@ package com.example.model;
 import java.io.Serializable;
 
 public class Offers implements Serializable {
-    private String name,startdate,enddate,image,offerid,date,time;
+    private String name, startdate, enddate, image, offerid, date, time;
 
     public Offers() {
 

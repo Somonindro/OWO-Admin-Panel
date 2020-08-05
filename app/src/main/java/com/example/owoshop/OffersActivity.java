@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.model.Offers;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 public class OffersActivity extends AppCompatActivity {
 
@@ -74,11 +76,12 @@ public class OffersActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
+
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
+
             }
 
         };
@@ -131,7 +134,9 @@ public class OffersActivity extends AppCompatActivity {
     }
 
     private void updateLabel() {
+
         String myFormat = "dd/MM/yyyy";
+
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         if(state == 1)
@@ -139,8 +144,6 @@ public class OffersActivity extends AppCompatActivity {
         else if(state == 2)
             offerEndDate.setText(sdf.format(myCalendar.getTime()));
     }
-
-
 
 
     private void OpenGallery() {
@@ -211,6 +214,7 @@ public class OffersActivity extends AppCompatActivity {
         loadingbar.setMessage("Please wait, we are adding the new offer.");
         loadingbar.setCanceledOnTouchOutside(false);
         loadingbar.show();
+
         Calendar calendar = Calendar.getInstance();
 
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
@@ -239,12 +243,15 @@ public class OffersActivity extends AppCompatActivity {
                 Task<Uri> urlTask=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+
                         if (!task.isSuccessful())
                         {
                             throw  task.getException();
                         }
+
                         downloadImageUrl=filePath.getDownloadUrl().toString();
                         return filePath.getDownloadUrl();
+
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
@@ -262,16 +269,10 @@ public class OffersActivity extends AppCompatActivity {
     }
 
     private void SaveOfferInfoToDatabase() {
-        HashMap<String,Object> offerMap=new HashMap<>();
-        offerMap.put("offerid",OfferRandomKey);
-        offerMap.put("date",saveCurrentDate);
-        offerMap.put("time",saveCurrentTime);
-        offerMap.put("name",OfferName);
-        offerMap.put("image",downloadImageUrl);
-        offerMap.put("startdate",StartDate);
-        offerMap.put("enddate",EndDate);
 
-        OffersRef.child(OfferRandomKey).updateChildren(offerMap)
+        Offers offers = new Offers(OfferName, StartDate, EndDate, downloadImageUrl, OfferRandomKey, saveCurrentDate, saveCurrentTime);
+
+        OffersRef.child(OfferRandomKey).setValue(offers)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -285,7 +286,7 @@ public class OffersActivity extends AppCompatActivity {
                         }
                         else {
                             loadingbar.dismiss();
-                            String message=task.getException().toString();
+                            String message= Objects.requireNonNull(task.getException()).toString();
                             Toast.makeText(OffersActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                         }
                     }
