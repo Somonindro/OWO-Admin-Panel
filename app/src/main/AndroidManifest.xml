@@ -51,7 +51,7 @@
 
         <activity android:name="com.OwoDokan.owoshop.AddProductAdapter" />
 
-        <activity android:name="com.OwoDokan.owoshop.AddProductActivity" />
+        <activity android:name="com.OwoDokan.owoshop.AddProductActivity"/>
 
         <activity android:name="com.OwoDokan.owoshop.SingleShopApprovalActivity" />
 

@@ -116,30 +116,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         }
                     });
 
-
-
-
-                    /*
-                    CharSequence options[]=new CharSequence[]{"Add Products","Product Availability"};
-                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                    builder.setTitle("PRODUCTS");
-                    builder.setItems(options, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int i) {
-                            if (i==0)
-                            {
-
-                            }
-                            else if(i==1)
-                            {
-
-                            }
-                        }
-                    });
-                    builder.show();
-
-                     */
-
                 }
 
                 else if (position==5)

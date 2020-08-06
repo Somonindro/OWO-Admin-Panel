@@ -29,7 +29,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xy
     @Override
     public xyz onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.add_product_sample,viewGroup,false);
+        View view = inflater.inflate(R.layout.add_product_sample,viewGroup,false);
         return new  xyz(view);
     }
 
