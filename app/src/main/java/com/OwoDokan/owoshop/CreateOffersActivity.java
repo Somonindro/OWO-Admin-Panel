@@ -280,7 +280,7 @@ public class CreateOffersActivity extends AppCompatActivity {
 
     private void SaveOfferInfoToDatabase() {
 
-        Offers offers = new Offers(OfferName, StartDate, EndDate, downloadImageUrl, OfferRandomKey, saveCurrentDate, saveCurrentTime, true);
+        Offers offers = new Offers(OfferName, StartDate, EndDate, downloadImageUrl, OfferRandomKey, saveCurrentDate, saveCurrentTime);
 
         OffersRef.child(OfferRandomKey).setValue(offers)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

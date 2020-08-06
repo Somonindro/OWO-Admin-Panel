@@ -92,27 +92,10 @@ public class AvilableOffersActivity extends AppCompatActivity {
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                CharSequence options[]=new CharSequence[]{"Yes","No"};
-                                AlertDialog.Builder builder=new AlertDialog.Builder(holder.itemView.getContext());
-                                builder.setTitle("Update offer?");
-                                builder.setItems(options, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int i) {
-                                        if (i==0)
-                                        {
-                                            Intent intent=new Intent(holder.itemView.getContext(), UpdateOfferActivity.class);
-                                            intent.putExtra("Offers",model);
-                                            holder.itemView.getContext().startActivity(intent);
 
-                                        }
-                                        else if(i==1)
-                                        {
-                                            Intent intent=new Intent(holder.itemView.getContext(), AvilableOffersActivity.class);
-                                            holder.itemView.getContext().startActivity(intent);
-                                        }
-                                    }
-                                });
-                                builder.show();
+                                Intent intent=new Intent(holder.itemView.getContext(), UpdateOfferActivity.class);
+                                intent.putExtra("Offers",model);
+                                holder.itemView.getContext().startActivity(intent);
                             }
                         });
                     }

@@ -40,11 +40,6 @@
 
         <activity android:name="com.OwoDokan.owoshop.AvilableOffersActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -74,7 +69,16 @@
 
         <activity android:name="com.OwoDokan.owoshop.ManagementActivity" />
 
-        <activity android:name="com.OwoDokan.owoshop.HomeActivity" />
+        <activity android:name="com.OwoDokan.owoshop.HomeActivity">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <activity android:name="com.OwoDokan.owoshop.CreateNewAdminActivity" />
 
