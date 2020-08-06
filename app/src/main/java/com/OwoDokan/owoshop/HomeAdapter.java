@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
@@ -84,6 +85,41 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==4)
                 {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                    View view = LayoutInflater.from(context).inflate(R.layout.custom_products_alert_dialog, null);
+
+                    Button add_a_new_product = view.findViewById(R.id.add_a_new_product);
+                    Button available_products = view.findViewById(R.id.available_products);
+
+                    builder.setView(view);
+
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                    add_a_new_product.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(holder.itemView.getContext(), AddProductActivity.class);
+                            holder.itemView.getContext().startActivity(intent);
+                            alertDialog.cancel();
+                        }
+                    });
+
+                    available_products.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(holder.itemView.getContext(), ProductAvailabilityActivity.class);
+                            holder.itemView.getContext().startActivity(intent);
+                            alertDialog.cancel();
+                        }
+                    });
+
+
+
+
+                    /*
                     CharSequence options[]=new CharSequence[]{"Add Products","Product Availability"};
                     AlertDialog.Builder builder=new AlertDialog.Builder(context);
                     builder.setTitle("PRODUCTS");
@@ -92,19 +128,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         public void onClick(DialogInterface dialog, int i) {
                             if (i==0)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), AddProductActivity.class);
-                                holder.itemView.getContext().startActivity(intent);
+
                             }
                             else if(i==1)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), ProductAvailabilityActivity.class);
-                                holder.itemView.getContext().startActivity(intent);
+
                             }
                         }
                     });
                     builder.show();
 
+                     */
+
                 }
+
                 else if (position==5)
                 {
 
@@ -125,6 +162,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         public void onClick(View v) {
                             Intent intent=new Intent(holder.itemView.getContext(), CreateOffersActivity.class);
                             holder.itemView.getContext().startActivity(intent);
+                            alertDialog.cancel();
                         }
                     });
 
@@ -133,30 +171,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         public void onClick(View v) {
                             Intent intent=new Intent(holder.itemView.getContext(), AvilableOffersActivity.class);
                             holder.itemView.getContext().startActivity(intent);
+                            alertDialog.cancel();
                         }
                     });
 
-
-                    /*
-                    CharSequence options[]=new CharSequence[]{"Add Offers","Offer Availability"};
-                    AlertDialog.Builder builder=new AlertDialog.Builder(context);
-                    builder.setTitle("OFFERS");
-                    builder.setItems(options, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int i) {
-                            if (i==0)
-                            {
-
-                            }
-                            else if(i==1)
-                            {
-
-                            }
-                        }
-                    });
-                    builder.show();
-
-                     */
                 }
                 else if (position==6)
                 {

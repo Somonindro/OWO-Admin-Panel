@@ -3,6 +3,10 @@
     <string name="maps_api_key">AIzaSyBOwbWr9F55eVhebZtVMhuWHNG4a52FM84</string>
 
 
+    <string name="product_dalali">
+        Owo Dokan Products are first class in terms of quality as well as price. Owo ensures you
+        to get best price</string>
+
     <string-array name="home">
         <item>Create Admin</item>
         <item>Semi Admins</item>
