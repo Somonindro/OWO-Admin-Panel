@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +19,16 @@ public class HomeActivity extends AppCompatActivity {
     static int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,
             R.drawable.home5, R.drawable.home6, R.drawable.home7,R.drawable.home8};
 
+    public static int p;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        DisplayMetrics displayMetrics = HomeActivity.this.getResources().getDisplayMetrics();
+        p = displayMetrics.widthPixels;
 
         recyclerView=findViewById(R.id.recyclerviewid);
 

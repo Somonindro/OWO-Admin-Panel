@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.OwoDokan.owoshop.HomeActivity.p;
+
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
 
     private Context context;
@@ -179,8 +181,15 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
 
         public xyz(@NonNull View itemView) {
             super(itemView);
-            imageView=itemView.findViewById(R.id.imageviewid);
-            textView=itemView.findViewById(R.id.textviewid);
+
+            ViewGroup.LayoutParams abcd =  itemView.getLayoutParams();// Handling different screen sizes in home
+            abcd.width = p/2-20;
+            itemView.setLayoutParams(abcd);
+
+            imageView = itemView.findViewById(R.id.imageviewid);
+            imageView.setMinimumHeight(p/2-40);
+            textView = itemView.findViewById(R.id.textviewid);
+            textView.setMinimumHeight(40);
         }
 
     }
