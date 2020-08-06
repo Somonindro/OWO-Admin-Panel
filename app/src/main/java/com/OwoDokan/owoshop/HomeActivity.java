@@ -18,8 +18,6 @@ public class HomeActivity extends AppCompatActivity {
     static int[] icons = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,
             R.drawable.home5, R.drawable.home6, R.drawable.home7,R.drawable.home8};
 
-    private HomeAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
         segment = getResources().getStringArray(R.array.home);
 
 
-        adapter = new HomeAdapter(HomeActivity.this);
+        HomeAdapter adapter = new HomeAdapter(HomeActivity.this);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -60,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
             }
         });

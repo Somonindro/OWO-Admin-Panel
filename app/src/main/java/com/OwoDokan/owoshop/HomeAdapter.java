@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -106,6 +107,37 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                 }
                 else if (position==5)
                 {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+                    View view = LayoutInflater.from(context).inflate(R.layout.custom_offers_alert_dialog, null);
+
+                    Button create_a_new_offer = view.findViewById(R.id.create_a_new_offer);
+                    Button available_offers = view.findViewById(R.id.available_offers);
+
+                    builder.setView(view);
+
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                    create_a_new_offer.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(holder.itemView.getContext(), CreateOffersActivity.class);
+                            holder.itemView.getContext().startActivity(intent);
+                        }
+                    });
+
+                    available_offers.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(holder.itemView.getContext(), AvilableOffersActivity.class);
+                            holder.itemView.getContext().startActivity(intent);
+                        }
+                    });
+
+
+                    /*
                     CharSequence options[]=new CharSequence[]{"Add Offers","Offer Availability"};
                     AlertDialog.Builder builder=new AlertDialog.Builder(context);
                     builder.setTitle("OFFERS");
@@ -114,17 +146,17 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                         public void onClick(DialogInterface dialog, int i) {
                             if (i==0)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), CreateOffersActivity.class);
-                                holder.itemView.getContext().startActivity(intent);
+
                             }
                             else if(i==1)
                             {
-                                Intent intent=new Intent(holder.itemView.getContext(), AvilableOffersActivity.class);
-                                holder.itemView.getContext().startActivity(intent);
+
                             }
                         }
                     });
                     builder.show();
+
+                     */
                 }
                 else if (position==6)
                 {
