@@ -43,7 +43,6 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
         layoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        //here will be code for firebase recycler adapter and it will use product_availability_sample.xml to inflate
     }
 
     @Override
@@ -61,7 +60,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = "+ model.getPrice()+"Tk."+"(Discount "+model.getDiscount()+"Tk.)");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
-                        //here will be the code for the availability switch
+
                         holder.productAvailability.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -69,6 +68,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                                     Toast.makeText(ProductAvailabilityActivity.this, "This product is now unavailable", Toast.LENGTH_SHORT).show();
                             }
                         });
+
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -78,6 +78,7 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int i) {
+
                                         if (i==0)
                                         {
                                             Intent intent=new Intent(holder.itemView.getContext(), UpdateProductActivity.class);

@@ -3,7 +3,8 @@ package com.OwoDokan.model;
 import java.io.Serializable;
 
 public class Products implements Serializable {
-    private String pname,description,price,image,category,pid,date,time,discount;
+
+    private String pname, description, price, image, category, pid, date, time, discount;
 
     public Products() {
 

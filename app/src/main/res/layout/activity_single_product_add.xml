@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         >
 
-
         <RelativeLayout
             android:id="@+id/relative_1"
             android:layout_width="350dp"
@@ -114,12 +113,15 @@
                 android:id="@+id/calculate_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calculate"
+                android:drawableLeft="@drawable/accounting"
+                android:drawableTint="@color/white"
+                android:drawablePadding="10dp"
+                android:text="Calc."
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/ethnocentric"
                 android:background="@drawable/buttons_blue"
-                android:padding="15dp"
-                android:layout_marginStart="30dp"/>
+                android:padding="8dp"
+                android:layout_marginStart="15dp"/>
 
         </LinearLayout>
 

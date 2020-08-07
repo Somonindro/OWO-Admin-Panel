@@ -1,10 +1,12 @@
 package com.OwoDokan.owoshop;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,9 +18,13 @@ import android.widget.Toast;
 
 import com.OwoDokan.model.Offers;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -162,34 +168,70 @@ public class UpdateOfferActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loadingbar.setTitle("Delete Offer");
-                loadingbar.setMessage("Please wait while we deleting the offer...");
-                loadingbar.setCanceledOnTouchOutside(false);
-                loadingbar.show();
 
-                reference.child(offers.getOfferid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                CharSequence options[]=new CharSequence[]{"Yes","No"};
+                final AlertDialog.Builder builder=new AlertDialog.Builder(UpdateOfferActivity.this);
+                builder.setTitle("Are you sure you want to delete this offer?");
+
+                builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onClick(DialogInterface dialog, int i) {
 
-                        if(task.isSuccessful())
+                        if (i==0)
                         {
-                            Toast.makeText(UpdateOfferActivity.this, "Offer removed successfully", Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
 
-                            Intent intent = new Intent(UpdateOfferActivity.this, AvilableOffersActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
-                            finish();
+                            loadingbar.setTitle("Delete Offer");
+                            loadingbar.setMessage("Please wait while we deleting the offer...");
+                            loadingbar.setCanceledOnTouchOutside(false);
+                            loadingbar.show();
+
+
+
+                            StorageReference ProductImagesRef = FirebaseStorage.getInstance().getReferenceFromUrl(offers.getImage());
+
+                            ProductImagesRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(UpdateOfferActivity.this, "Offer Image removed successfully", Toast.LENGTH_SHORT).show();
+
+                                    reference.child(offers.getOfferid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful())
+                                            {
+                                                Toast.makeText(UpdateOfferActivity.this, "Offer removed", Toast.LENGTH_SHORT).show();
+                                                loadingbar.dismiss();
+                                                finish();
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(UpdateOfferActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(UpdateOfferActivity.this, "Can not delete offer", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(UpdateOfferActivity.this, "Error: "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    loadingbar.dismiss();
+                                }
+                            });
+
+
                         }
 
-                        else
+                        else if(i == 1)
                         {
-                            Toast.makeText(UpdateOfferActivity.this, "Can not delete offer", Toast.LENGTH_SHORT).show();
-                            Toast.makeText(UpdateOfferActivity.this, "Error: "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
+
+                            dialog.cancel();
                         }
+
                     }
                 });
+
+                builder.show();
             }
         });
 

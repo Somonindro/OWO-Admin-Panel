@@ -57,9 +57,9 @@ public class AvilableOffersActivity extends AppCompatActivity {
         });
 
 
-        recyclerView=findViewById(R.id.offer_availability_recyclerview_id);
+        recyclerView = findViewById(R.id.offer_availability_recyclerview_id);
         recyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
     }
 

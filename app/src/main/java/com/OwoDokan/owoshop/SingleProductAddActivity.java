@@ -16,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.OwoDokan.model.Products;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -31,7 +34,9 @@ import java.util.HashMap;
 
 public class SingleProductAddActivity extends AppCompatActivity {
 
-    private String CategoryName,Description,Price,Pname,Discount,saveCurrentDate,saveCurrentTime,productRandomKey,downloadImageUrl;
+    private String CategoryName, Description, Price, Pname, Discount,
+            saveCurrentDate, saveCurrentTime, productRandomKey, downloadImageUrl;
+
     private Button AddNewProductButton, preview_new_product, calculate_discount;
     private ImageView InputProductImage;
     private EditText InputProductName,InputProductDescription,InputProductPrice,InputProductDiscount;
@@ -46,24 +51,24 @@ public class SingleProductAddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_product_add);
-/*
-        CategoryName=getIntent().getExtras().get("category").toString();
-        ProductImagesRef= FirebaseStorage.getInstance().getReference().child("ProductImage");
-        ProductsRef= FirebaseDatabase.getInstance().getReference().child("Products");
 
 
- */
-        AddNewProductButton=(Button)findViewById(R.id.add_new_product);
-        InputProductImage=(ImageView) findViewById(R.id.select_product_image);
-        InputProductName=(EditText)findViewById(R.id.product_name);
-        InputProductDescription=(EditText)findViewById(R.id.product_description);
-        InputProductDiscount=(EditText)findViewById(R.id.product_discount);
-        InputProductPrice=(EditText)findViewById(R.id.product_price);
+        CategoryName = getIntent().getExtras().get("category").toString();
+        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("ProductImage");
+        ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+
+        AddNewProductButton = (Button)findViewById(R.id.add_new_product);
+        InputProductImage = (ImageView) findViewById(R.id.select_product_image);
+        InputProductName = (EditText)findViewById(R.id.product_name);
+        InputProductDescription = (EditText)findViewById(R.id.product_description);
+        InputProductDiscount = (EditText)findViewById(R.id.product_discount);
+        InputProductPrice = (EditText)findViewById(R.id.product_price);
         preview_new_product = findViewById(R.id.preview_new_product);
         discounted_price = findViewById(R.id.discounted_price);
         calculate_discount = findViewById(R.id.calculate_discount);
 
-        loadingbar=new ProgressDialog(this);
+        loadingbar = new ProgressDialog(this);
 
         preview_new_product.setOnClickListener(new View.OnClickListener() {// Have to give product preview
             @Override
@@ -136,11 +141,11 @@ public class SingleProductAddActivity extends AppCompatActivity {
                 OpenGallery();
             }
         });
+
         AddNewProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ValidateProductData();
-
             }
         });
 
@@ -165,10 +170,11 @@ public class SingleProductAddActivity extends AppCompatActivity {
     }
 
     private void ValidateProductData() {
-        Description=InputProductDescription.getText().toString();
-        Price=InputProductPrice.getText().toString();
-        Pname=InputProductName.getText().toString();
-        Discount=InputProductDiscount.getText().toString();
+
+        Description = InputProductDescription.getText().toString();
+        Price = InputProductPrice.getText().toString();
+        Pname = InputProductName.getText().toString();
+        Discount = InputProductDiscount.getText().toString();
 
         if(ImageUri==null)
         {
@@ -193,7 +199,6 @@ public class SingleProductAddActivity extends AppCompatActivity {
         else {
             StoreProductInformation();
         }
-
     }
 
     private void StoreProductInformation() {
@@ -202,6 +207,7 @@ public class SingleProductAddActivity extends AppCompatActivity {
         loadingbar.setMessage("Please wait, we are adding the new product.");
         loadingbar.setCanceledOnTouchOutside(false);
         loadingbar.show();
+
         Calendar calendar=Calendar.getInstance();
 
         SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd, yyyy");
@@ -212,8 +218,10 @@ public class SingleProductAddActivity extends AppCompatActivity {
 
         productRandomKey=saveCurrentDate+saveCurrentTime;
 
-        final StorageReference filePath=ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey +".jpg");
-        final UploadTask uploadTask=filePath.putFile(ImageUri);
+        final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey +".jpg");
+
+        final UploadTask uploadTask = filePath.putFile(ImageUri);
+        
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -253,35 +261,29 @@ public class SingleProductAddActivity extends AppCompatActivity {
 
     private void SaveProductInfoToDatabase() {
 
-        HashMap<String,Object> productMap=new HashMap<>();
-        productMap.put("pid",productRandomKey);
-        productMap.put("date",saveCurrentDate);
-        productMap.put("time",saveCurrentTime);
-        productMap.put("description",Description);
-        productMap.put("image",downloadImageUrl);
-        productMap.put("category",CategoryName);
-        productMap.put("price",Price);
-        productMap.put("pname",Pname);
-        productMap.put("discount",Discount);
+        Products new_product = new Products(Pname, Description, Price, downloadImageUrl, CategoryName,
+                productRandomKey, saveCurrentDate, saveCurrentTime, Discount);
 
-        ProductsRef.child(productRandomKey).updateChildren(productMap)
+
+        ProductsRef.child(productRandomKey).setValue(new_product)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful())
                         {
-                            Intent intent=new Intent(SingleProductAddActivity.this, AddProductActivity.class);
-                            startActivity(intent);
-
-                            loadingbar.dismiss();
                             Toast.makeText(SingleProductAddActivity.this, "Product is added successfully...", Toast.LENGTH_SHORT).show();
+                            loadingbar.dismiss();
+                            finish();
                         }
+
                         else {
                             loadingbar.dismiss();
                             String message=task.getException().toString();
                             Toast.makeText(SingleProductAddActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
     }
+
 }

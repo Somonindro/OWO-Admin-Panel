@@ -27,6 +27,7 @@ public class UpdateSemiAdminActivity extends AppCompatActivity {
     private Switch approveShop,maintainShop,addProducts,updateProducts,createOffers,maintainUsers,messaging;
     private Button updateAdminBtn;
     private ProgressBar progressBar;
+    private ImageView back_to_semi_admins;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class UpdateSemiAdminActivity extends AppCompatActivity {
         clickedAdminName = (TextView)findViewById(R.id.clicked_admin_name);
         clickedAdminMobile = findViewById(R.id.clicked_admin_mobile);
         progressBar = findViewById(R.id.clicked_complete_progress);
+        back_to_semi_admins = findViewById(R.id.back_to_semi_admins);
 
         approveShop = (Switch)findViewById(R.id.clicked_approve_shop);
         maintainShop = (Switch)findViewById(R.id.clicked_maintain_shop);
@@ -67,6 +69,15 @@ public class UpdateSemiAdminActivity extends AppCompatActivity {
         createOffers.setChecked(semiAdmins.getCreate_offers());
         maintainUsers.setChecked(semiAdmins.getMaintain_users());
         messaging.setChecked(semiAdmins.getMessaging());
+
+
+
+        back_to_semi_admins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         updateAdminBtn.setOnClickListener(new View.OnClickListener() {
             @Override

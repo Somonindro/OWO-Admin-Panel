@@ -30,10 +30,6 @@
             android:name="com.OwoDokan.owoshop.LocationFromMap"
             android:label="@string/title_activity_location_from_map" />
 
-        <activity android:name="com.OwoDokan.owoshop.Product_details">
-
-        </activity>
-
         <activity android:name="com.OwoDokan.owoshop.DummyPendingShopActivity" />
 
         <activity android:name="com.OwoDokan.owoshop.UpdateOfferActivity" />
