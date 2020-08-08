@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.OwoDokan.model.Products;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +31,16 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     private DatabaseReference ProductsRef;
+    private ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_availability);
+
+        shimmerFrameLayout = findViewById(R.id.dummy_shimmer_products);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.startShimmer();
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
@@ -54,6 +60,14 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                 .build();
         FirebaseRecyclerAdapter<Products,ProductViewHolder> adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+
+                    @Override
+                    public void onDataChanged() {
+                        super.onDataChanged();
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                    }
+
                     @Override
                     protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull final Products model) {
 

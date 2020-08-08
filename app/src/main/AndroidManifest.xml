@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.OwoDokan.owoshop">
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the "MyLocation" functionality.
-    -->
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,11 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".preview_product"></activity>
+
+        <activity android:name=".preview_product"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -30,9 +28,10 @@
         <activity
             android:name=".LocationFromMap"
             android:label="@string/title_activity_location_from_map" />
-        <activity android:name=".DummyPendingShopActivity" />
-        <activity android:name=".UpdateOfferActivity" />
-        <activity android:name=".AvilableOffersActivity"></activity>
+
+        <activity android:name=".DummyPendingShopActivity"/>
+        <activity android:name=".UpdateOfferActivity"/>
+        <activity android:name=".AvilableOffersActivity"/>
         <activity android:name=".UpdateProductActivity" />
         <activity android:name=".ProductAvailabilityActivity" />
         <activity android:name=".SingleProductAddActivity" />
@@ -41,22 +40,25 @@
         <activity android:name=".SingleShopApprovalActivity" />
         <activity android:name=".ShopApprovalActivity" />
         <activity android:name=".UpdateSemiAdminActivity" />
-        <activity android:name=".CreateOffersActivity"></activity>
+        <activity android:name=".CreateOffersActivity"/>
         <activity android:name=".SemiAdminActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ManagementActivity" />
         <activity android:name=".HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".CreateNewAdminActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Splash_screen" />
+        <activity android:name=".Splash_screen">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
