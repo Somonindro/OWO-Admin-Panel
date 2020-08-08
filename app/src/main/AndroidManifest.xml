@@ -18,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".preview_product"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -27,63 +28,35 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.OwoDokan.owoshop.LocationFromMap"
+            android:name=".LocationFromMap"
             android:label="@string/title_activity_location_from_map" />
-
-        <activity android:name="com.OwoDokan.owoshop.DummyPendingShopActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.UpdateOfferActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.AvilableOffersActivity">
-
-
-        </activity>
-
-        <activity android:name="com.OwoDokan.owoshop.UpdateProductActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.ProductAvailabilityActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.SingleProductAddActivity"/>
-
-        <activity android:name="com.OwoDokan.owoshop.AddProductAdapter" />
-
-        <activity android:name="com.OwoDokan.owoshop.AddProductActivity"/>
-
-        <activity android:name="com.OwoDokan.owoshop.SingleShopApprovalActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.ShopApprovalActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.UpdateSemiAdminActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.CreateOffersActivity">
-
-        </activity>
-
-        <activity android:name="com.OwoDokan.owoshop.SemiAdminActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.MainActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.ManagementActivity" />
-
-        <activity android:name="com.OwoDokan.owoshop.HomeActivity">
-
-
+        <activity android:name=".DummyPendingShopActivity" />
+        <activity android:name=".UpdateOfferActivity" />
+        <activity android:name=".AvilableOffersActivity"></activity>
+        <activity android:name=".UpdateProductActivity" />
+        <activity android:name=".ProductAvailabilityActivity" />
+        <activity android:name=".SingleProductAddActivity" />
+        <activity android:name=".AddProductAdapter" />
+        <activity android:name=".AddProductActivity" />
+        <activity android:name=".SingleShopApprovalActivity" />
+        <activity android:name=".ShopApprovalActivity" />
+        <activity android:name=".UpdateSemiAdminActivity" />
+        <activity android:name=".CreateOffersActivity"></activity>
+        <activity android:name=".SemiAdminActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ManagementActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name="com.OwoDokan.owoshop.CreateNewAdminActivity" />
-
+        <activity android:name=".CreateNewAdminActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-
-        <activity android:name="com.OwoDokan.owoshop.Splash_screen"/>
-
+        <activity android:name=".Splash_screen" />
     </application>
 
 </manifest>

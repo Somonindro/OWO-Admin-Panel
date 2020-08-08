@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 public class Products implements Serializable {
 
-    private String pname, description, price, image, category, pid, date, time, discount;
+    private String pname, description, price, image, category, pid, date, time, discount, quantity;
 
     public Products() {
 
     }
 
-    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time,String discount) {
+    public Products(String pname, String description, String price, String image,
+                    String category, String pid, String date, String time,String discount, String quantity) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -20,6 +21,7 @@ public class Products implements Serializable {
         this.date = date;
         this.time = time;
         this.discount=discount;
+        this.quantity = quantity;
     }
 
     public String getPname() {
@@ -92,5 +94,13 @@ public class Products implements Serializable {
 
     public void setDiscount(String discount) {
         this.discount = discount;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

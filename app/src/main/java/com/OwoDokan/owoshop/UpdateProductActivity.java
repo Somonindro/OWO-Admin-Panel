@@ -29,7 +29,7 @@ import com.squareup.picasso.Picasso;
 
 public class UpdateProductActivity extends AppCompatActivity {
 
-    private EditText descriptionUpdate, priceUpdate, discountUpdate;
+    private EditText descriptionUpdate, priceUpdate, discountUpdate, quantity_update;
     private Button updateButton;
     private ImageView imageUpdate;
     private ProgressDialog loadingbar;
@@ -55,6 +55,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         delete_product = findViewById(R.id.delete_products_button);
         back_to_home = findViewById(R.id.back_to_home);
         updated_price = findViewById(R.id.new_price_update);
+        quantity_update = findViewById(R.id.product_quantity_update);
 
         loadingbar =new ProgressDialog(this);
 
@@ -65,6 +66,7 @@ public class UpdateProductActivity extends AppCompatActivity {
         descriptionUpdate.setText(products.getDescription());
         priceUpdate.setText(products.getPrice());
         discountUpdate.setText(products.getDiscount());
+        quantity_update.setText(products.getQuantity());
 
         calculate_new_price.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,6 +174,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                 products.setDescription(descriptionUpdate.getText().toString());
                 products.setPrice(priceUpdate.getText().toString());
                 products.setDiscount(discountUpdate.getText().toString());
+                products.setQuantity(quantity_update.getText().toString());
 
                 reference.child(products.getPid()).setValue(products).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -180,7 +183,7 @@ public class UpdateProductActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(UpdateProductActivity.this, "Product information updated successfully.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(UpdateProductActivity.this,HomeActivity.class);
+                            Intent intent = new Intent(UpdateProductActivity.this, ProductAvailabilityActivity.class);
                             loadingbar.dismiss();
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);

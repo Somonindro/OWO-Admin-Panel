@@ -78,10 +78,24 @@
             android:background="@drawable/edittext_design"/>
 
         <EditText
-            android:id="@+id/product_price"
+            android:id="@+id/product_quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/product_description"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="10dp"
+            android:padding="15dp"
+            android:hint="Product Quantity"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/edittext_design"/>
+
+
+        <EditText
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_quantity"
             android:inputType="numberDecimal"
             android:layout_marginTop="10dp"
             android:padding="15dp"

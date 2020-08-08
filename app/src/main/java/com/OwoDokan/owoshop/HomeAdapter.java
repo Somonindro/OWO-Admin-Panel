@@ -42,12 +42,13 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, segment1.get(position).first+position, Toast.LENGTH_SHORT).show();
+
                 if (position==0)
                 {
                     Intent intent=new Intent(holder.itemView.getContext(), CreateNewAdminActivity.class);
                     holder.itemView.getContext().startActivity(intent);
                 }
+
                 else if (position==1)
                 {
                     Intent intent=new Intent(holder.itemView.getContext(), SemiAdminActivity.class);

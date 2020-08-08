@@ -56,18 +56,10 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull final ProductViewHolder holder, int position, @NonNull final Products model) {
+
                         holder.txtProductName.setText(model.getPname());
-                        holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = "+ model.getPrice()+"Tk."+"(Discount "+model.getDiscount()+"Tk.)");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
-
-                        holder.productAvailability.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if (!isChecked)
-                                    Toast.makeText(ProductAvailabilityActivity.this, "This product is now unavailable", Toast.LENGTH_SHORT).show();
-                            }
-                        });
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -112,17 +104,14 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView txtProductName,txtProductDescription,txtProductPrice;
+        public TextView txtProductName, txtProductPrice;
         public ImageView imageView;
-        public Switch productAvailability;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView=(ImageView)itemView.findViewById(R.id.product_image);
             txtProductName=(TextView)itemView.findViewById(R.id.product_name);
-            txtProductDescription=(TextView)itemView.findViewById(R.id.product_description);
             txtProductPrice=(TextView)itemView.findViewById(R.id.product_price);
-            productAvailability=(Switch)itemView.findViewById(R.id.product_availability_switch);
         }
     }
 }
