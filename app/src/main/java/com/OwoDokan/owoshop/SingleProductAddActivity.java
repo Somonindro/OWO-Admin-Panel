@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.OwoDokan.Network.RetrofitClient;
 import com.OwoDokan.model.Products;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,9 +29,18 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SingleProductAddActivity extends AppCompatActivity {
 
@@ -70,10 +80,6 @@ public class SingleProductAddActivity extends AppCompatActivity {
         product_quantity = findViewById(R.id.product_quantity);
 
         loadingbar = new ProgressDialog(this);
-
-
-
-
 
 
         preview_new_product.setOnClickListener(new View.OnClickListener() {// Have to give product preview
@@ -266,10 +272,10 @@ public class SingleProductAddActivity extends AppCompatActivity {
         SimpleDateFormat currentDate=new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate=currentDate.format(calendar.getTime());
 
-        SimpleDateFormat currentTime=new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime=currentTime.format(calendar.getTime());
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
 
-        productRandomKey=saveCurrentDate+saveCurrentTime;
+        productRandomKey = saveCurrentDate+saveCurrentTime;
 
         final StorageReference filePath = ProductImagesRef.child(ImageUri.getLastPathSegment() + productRandomKey +".jpg");
 
@@ -288,6 +294,7 @@ public class SingleProductAddActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(SingleProductAddActivity.this, "Product Image uploaded successfully", Toast.LENGTH_SHORT).show();
+
                 Task<Uri> urlTask=uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
                     public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -316,29 +323,57 @@ public class SingleProductAddActivity extends AppCompatActivity {
 
     private void SaveProductInfoToDatabase() {
 
-        Products new_product = new Products(Pname, Description, Price, downloadImageUrl, CategoryName,
-                productRandomKey, saveCurrentDate, saveCurrentTime, Discount, quantity);
+        Call<ResponseBody> call = RetrofitClient
+                .getInstance()
+                .getApi()
+                .createProduct(productRandomKey, downloadImageUrl, Pname, CategoryName,
+                        Price, Discount, quantity, Description, saveCurrentDate, saveCurrentTime);
 
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-        ProductsRef.child(productRandomKey).setValue(new_product)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                        {
-                            Toast.makeText(SingleProductAddActivity.this, "Product is added successfully...", Toast.LENGTH_SHORT).show();
-                            loadingbar.dismiss();
-                            finish();
-                        }
+                String s = null;
 
-                        else {
-                            loadingbar.dismiss();
-                            String message=task.getException().toString();
-                            Toast.makeText(SingleProductAddActivity.this, "Error : "+message, Toast.LENGTH_SHORT).show();
-                        }
-
+                try{
+                    if(response.code() == 201)
+                    {
+                        s = response.body().string();
+                        Toast.makeText(SingleProductAddActivity.this, "Product is added successfully...", Toast.LENGTH_SHORT).show();
+                        loadingbar.dismiss();
+                        finish();
                     }
-                });
+                    else
+                    {
+                        s = response.errorBody().string();
+                        loadingbar.dismiss();
+                    }
+                }catch(IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                if(s!=null)
+                {
+                    try {
+                        JSONObject jsonObject = new JSONObject(s);
+
+                        boolean error = jsonObject.getBoolean("error");
+
+                        Toast.makeText(SingleProductAddActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(SingleProductAddActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
