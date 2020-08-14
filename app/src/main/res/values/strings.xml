@@ -44,6 +44,7 @@
         <item>Offers</item>
         <item>Users</item>
         <item>Message</item>
+        <item>Cloud Messaging</item>
     </string-array>
 
     <string-array name="productname">

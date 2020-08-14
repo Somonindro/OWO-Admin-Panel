@@ -15,13 +15,12 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".preview_product"/>
+        <activity android:name=".CloudMessagingActivity"></activity>
+        <activity android:name=".preview_product" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/maps_api_key" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -29,10 +28,9 @@
         <activity
             android:name=".LocationFromMap"
             android:label="@string/title_activity_location_from_map" />
-
-        <activity android:name=".DummyPendingShopActivity"/>
-        <activity android:name=".UpdateOfferActivity"/>
-        <activity android:name=".AvilableOffersActivity"/>
+        <activity android:name=".DummyPendingShopActivity" />
+        <activity android:name=".UpdateOfferActivity" />
+        <activity android:name=".AvilableOffersActivity" />
         <activity android:name=".UpdateProductActivity" />
         <activity android:name=".ProductAvailabilityActivity" />
         <activity android:name=".SingleProductAddActivity" />
@@ -41,25 +39,28 @@
         <activity android:name=".SingleShopApprovalActivity" />
         <activity android:name=".ShopApprovalActivity" />
         <activity android:name=".UpdateSemiAdminActivity" />
-        <activity android:name=".CreateOffersActivity"/>
+        <activity android:name=".CreateOffersActivity" />
         <activity android:name=".SemiAdminActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ManagementActivity" />
-        <activity android:name=".HomeActivity">
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".CreateNewAdminActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".Splash_screen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
