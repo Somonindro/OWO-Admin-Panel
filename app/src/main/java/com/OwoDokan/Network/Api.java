@@ -13,7 +13,6 @@ public interface Api {
     @FormUrlEncoded
     @POST("createProduct")
     Call<ResponseBody> createProduct(
-            @Field("product_id") String product_id,
             @Field("product_image") String product_image,
             @Field("product_name") String product_name,
             @Field("product_category") String product_category,

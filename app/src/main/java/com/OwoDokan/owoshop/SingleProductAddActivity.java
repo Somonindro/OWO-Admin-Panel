@@ -326,7 +326,7 @@ public class SingleProductAddActivity extends AppCompatActivity {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .createProduct(productRandomKey, downloadImageUrl, Pname, CategoryName,
+                .createProduct(downloadImageUrl, Pname, CategoryName,
                         Price, Discount, quantity, Description, saveCurrentDate, saveCurrentTime);
 
         call.enqueue(new Callback<ResponseBody>() {
