@@ -32,7 +32,16 @@
         <activity android:name=".UpdateOfferActivity" />
         <activity android:name=".AvilableOffersActivity" />
         <activity android:name=".UpdateProductActivity" />
-        <activity android:name=".ProductAvailabilityActivity" />
+        <activity android:name=".ProductAvailabilityActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity android:name=".SingleProductAddActivity" />
         <activity android:name=".AddProductAdapter" />
         <activity android:name=".AddProductActivity" />
@@ -48,12 +57,9 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Splash_screen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity android:name=".Splash_screen">
+
         </activity>
 
         <service android:name=".MyFirebaseMessagingService">

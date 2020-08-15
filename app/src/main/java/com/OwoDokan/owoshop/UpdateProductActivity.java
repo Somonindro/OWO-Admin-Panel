@@ -61,12 +61,12 @@ public class UpdateProductActivity extends AppCompatActivity {
 
         final com.OwoDokan.model.Products products = (Products) getIntent().getSerializableExtra("Products");
 
-        Picasso.get().load(products.getImage()).into(imageUpdate);
-        collapsingToolbarLayout.setTitle(products.getPname());
-        descriptionUpdate.setText(products.getDescription());
-        priceUpdate.setText(products.getPrice());
-        discountUpdate.setText(products.getDiscount());
-        quantity_update.setText(products.getQuantity());
+        Picasso.get().load(products.getProduct_image()).into(imageUpdate);
+        collapsingToolbarLayout.setTitle(products.getProduct_name());
+        descriptionUpdate.setText(products.getProduct_description());
+        priceUpdate.setText(products.getProduct_price());
+        discountUpdate.setText(products.getProduct_discount());
+        quantity_update.setText(products.getProduct_quantity());
 
         calculate_new_price.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +112,14 @@ public class UpdateProductActivity extends AppCompatActivity {
                             loadingbar.show();
 
 
-                            StorageReference ProductImagesRef = FirebaseStorage.getInstance().getReferenceFromUrl(products.getImage());
+                            StorageReference ProductImagesRef = FirebaseStorage.getInstance().getReferenceFromUrl(products.getProduct_image());
 
                             ProductImagesRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(UpdateProductActivity.this, "Product Image removed successfully", Toast.LENGTH_SHORT).show();
 
-                                    reference.child(products.getPid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    reference.child(String.valueOf(products.getProduct_id())).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful())
@@ -171,12 +171,12 @@ public class UpdateProductActivity extends AppCompatActivity {
                 loadingbar.show();
 
 
-                products.setDescription(descriptionUpdate.getText().toString());
-                products.setPrice(priceUpdate.getText().toString());
-                products.setDiscount(discountUpdate.getText().toString());
-                products.setQuantity(quantity_update.getText().toString());
+                products.setProduct_description(descriptionUpdate.getText().toString());
+                products.setProduct_price(priceUpdate.getText().toString());
+                products.setProduct_discount(discountUpdate.getText().toString());
+                products.setProduct_quantity(quantity_update.getText().toString());
 
-                reference.child(products.getPid()).setValue(products).addOnCompleteListener(new OnCompleteListener<Void>() {
+                reference.child(String.valueOf(products.getProduct_id())).setValue(products).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 

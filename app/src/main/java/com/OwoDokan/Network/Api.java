@@ -1,11 +1,14 @@
 package com.OwoDokan.Network;
 
+import com.OwoDokan.response.OwoApiResponse;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 
 public interface Api {
@@ -22,6 +25,11 @@ public interface Api {
             @Field("product_description") String product_description,
             @Field("product_date") String product_date,
             @Field("product_time") String product_time
+    );
+
+    @GET("allProducts")
+    Call<OwoApiResponse> getAnswers(
+            @Query("page") int page
     );
 
 }

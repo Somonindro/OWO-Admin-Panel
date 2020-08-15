@@ -23,6 +23,7 @@
         android:id="@+id/dummy_shimmer_products"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         >
 
 
@@ -37,9 +38,6 @@
             <include layout="@layout/shimmer_dummy_product_lists"/>
 
         </LinearLayout>
-
-
-
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
