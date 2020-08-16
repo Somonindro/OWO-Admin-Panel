@@ -1,7 +1,6 @@
 package com.OwoDokan.pagination;
 
 import androidx.annotation.NonNull;
-import androidx.paging.ItemKeyedDataSource;
 import androidx.paging.PageKeyedDataSource;
 
 import com.OwoDokan.Network.RetrofitClient;
@@ -14,7 +13,7 @@ import retrofit2.Response;
 
 public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
 
-    private static final int FIRST_PAGE = 1;
+    private static final int FIRST_PAGE = 0;
 
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull final LoadInitialCallback<Integer, Products> callback) {
@@ -28,10 +27,9 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
 
                         if(response.body() != null){
 
-                            callback.onResult(response.body().products, null, FIRST_PAGE + 1);
+                            callback.onResult(response.body().products, null, FIRST_PAGE);
 
                         }
-
                     }
 
                     @Override
@@ -53,7 +51,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
 
                         if(response.body() != null){
-                            Integer key = (params.key > 1) ? params.key - 1 : null;
+                            Integer key = (params.key > 0) ? params.key - 1 : null;
                             callback.onResult(response.body().products, key);
                         }
                     }

@@ -1,9 +1,7 @@
 package com.OwoDokan.pagination;
 
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,6 @@ import com.OwoDokan.model.Products;
 import com.OwoDokan.owoshop.R;
 import com.OwoDokan.owoshop.UpdateProductActivity;
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemViewHolder>{
 
@@ -65,7 +62,6 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
                     return oldItem.getProduct_id() == newItem.getProduct_id();
                 }
 
-                @SuppressLint("DiffUtilEquals")
                 @Override
                 public boolean areContentsTheSame(Products oldItem, Products newItem) {
                     return oldItem.equals(newItem);

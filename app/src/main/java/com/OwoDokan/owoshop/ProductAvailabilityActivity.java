@@ -11,10 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.OwoDokan.model.Products;
 import com.OwoDokan.pagination.ItemAdapter;
 import com.OwoDokan.pagination.ItemViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductAvailabilityActivity extends AppCompatActivity {
 
@@ -22,6 +26,8 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ItemAdapter adapter;
+    private PagedList<Products> products;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +53,27 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
 
     public void getProducts() {
         ItemViewModel itemViewModel = ViewModelProviders.of(this).get(ItemViewModel.class);
-        adapter = new ItemAdapter(this);
 
         itemViewModel.itemPagedList.observe(this, new Observer<PagedList<Products>>() {
             @Override
             public void onChanged(@Nullable PagedList<Products> items) {
-                adapter.submitList(items);
+                products = items;
                 showOnRecyclerView();
             }
         });
+
     }
 
 
     private void showOnRecyclerView() {
+        adapter = new ItemAdapter(this);
+        adapter.submitList(products);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        swipeRefreshLayout.setRefreshing(false);
         adapter.notifyDataSetChanged();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 }
