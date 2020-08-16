@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.OwoDokan.Network.RetrofitClient;
 import com.OwoDokan.model.Products;
+import com.OwoDokan.response.DeleteResponse;
 import com.OwoDokan.response.UpdatedProductResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -117,30 +118,41 @@ public class UpdateProductActivity extends AppCompatActivity {
                             loadingbar.setCanceledOnTouchOutside(false);
                             loadingbar.show();
 
-
                             StorageReference ProductImagesRef = FirebaseStorage.getInstance().getReferenceFromUrl(products.getProduct_image());
 
                             ProductImagesRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
+
                                     Toast.makeText(UpdateProductActivity.this, "Product Image removed successfully", Toast.LENGTH_SHORT).show();
 
-                                    reference.child(String.valueOf(products.getProduct_id())).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    Call<DeleteResponse> call = RetrofitClient.getInstance()
+                                            .getApi().deleteProduct(products.getProduct_id());
+
+                                    call.enqueue(new Callback<DeleteResponse>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful())
-                                            {
-                                                Toast.makeText(UpdateProductActivity.this, "Product removed", Toast.LENGTH_SHORT).show();
+                                        public void onResponse(Call<DeleteResponse> call, Response<DeleteResponse> response) {
+
+                                            Toast.makeText(UpdateProductActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                            if(!response.body().isError()) {
                                                 loadingbar.dismiss();
                                                 finish();
                                             }
                                             else
                                             {
-                                                Toast.makeText(UpdateProductActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                                 loadingbar.dismiss();
                                             }
                                         }
+
+                                        @Override
+                                        public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                                            Toast.makeText(UpdateProductActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            loadingbar.dismiss();
+                                        }
                                     });
+
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
