@@ -16,7 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xyz>{
-    private List<Pair<String,Integer>> product1,product2 = new ArrayList<Pair<String, Integer>>();
+    public static List<Pair<String,Integer>> product1;
+    public List<Pair<String,Integer>> product2 = new ArrayList<Pair<String, Integer>>();
     private Context context;
 
     public AddProductAdapter(List<Pair<String,Integer>> product1,Context context) {
@@ -39,7 +40,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xy
         holder.imageView.setImageResource(product1.get(position).second);
         holder.textView.setText(product1.get(position).first);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(context, product1.get(position).first, Toast.LENGTH_SHORT).show();
@@ -47,7 +48,8 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xy
                 intent.putExtra("category",product1.get(position).first);
                 holder.itemView.getContext().startActivity(intent);
             }
-        });
+        });*/
+        //clicklistener is implemented in AdProductActivity class
 
     }
 

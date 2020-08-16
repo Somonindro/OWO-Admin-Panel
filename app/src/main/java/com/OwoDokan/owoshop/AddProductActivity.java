@@ -5,6 +5,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.Menu;
@@ -12,6 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.OwoDokan.model.Products;
+import com.OwoDokan.pagination.ItemAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,6 +60,24 @@ public class AddProductActivity extends AppCompatActivity {
         }
 
         recyclerView = findViewById(R.id.add_product_recyclerview_id);
+
+        //this is added now
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(AddProductActivity.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(AddProductActivity.this, SingleProductAddActivity.class);
+                        intent.putExtra("category", AddProductAdapter.product1.get(position).first);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                    }
+                })
+        );
+        //ei prjonto
 
         adapter = new AddProductAdapter(pairList, AddProductActivity.this);
 
