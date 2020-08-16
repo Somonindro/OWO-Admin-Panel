@@ -38,6 +38,12 @@ public interface Api {
     );
 
 
+    @GET("searchProduct")
+    Call<OwoApiResponse> searchProduct(
+            @Query("product_name") String product_name
+    );
+
+
     @FormUrlEncoded
     @PUT("updateProduct/{product_id}")
     Call<UpdatedProductResponse> updateProduct(
