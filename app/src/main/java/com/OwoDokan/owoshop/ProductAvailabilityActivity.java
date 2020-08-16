@@ -34,7 +34,8 @@ public class ProductAvailabilityActivity extends AppCompatActivity {
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(ProductAvailabilityActivity.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         Products products = ItemAdapter.productsList.get(position);
                         Intent intent = new Intent(ProductAvailabilityActivity.this, UpdateProductActivity.class);
                         intent.putExtra("Products", products);
