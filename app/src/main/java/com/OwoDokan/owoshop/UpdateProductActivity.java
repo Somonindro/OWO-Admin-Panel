@@ -19,6 +19,7 @@ import com.OwoDokan.Network.RetrofitClient;
 import com.OwoDokan.model.Products;
 import com.OwoDokan.response.DeleteResponse;
 import com.OwoDokan.response.UpdatedProductResponse;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +68,7 @@ public class UpdateProductActivity extends AppCompatActivity {
 
         final com.OwoDokan.model.Products products = (Products) getIntent().getSerializableExtra("Products");
 
-        Picasso.get().load(products.getProduct_image()).into(imageUpdate);
+        Glide.with(this).load(products.getProduct_image()).into(imageUpdate);
         collapsingToolbarLayout.setTitle(products.getProduct_name());
         descriptionUpdate.setText(products.getProduct_description());
         priceUpdate.setText(products.getProduct_price());

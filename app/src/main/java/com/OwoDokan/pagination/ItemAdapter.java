@@ -4,6 +4,7 @@ package com.OwoDokan.pagination;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.OwoDokan.model.Products;
 import com.OwoDokan.owoshop.R;
+import com.OwoDokan.owoshop.UpdateProductActivity;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemViewHolder>{
 
     private Context mCtx;
-    public static List<Products> productsList = new ArrayList<>();
 
 
     public ItemAdapter(Context mCtx) {
@@ -45,13 +44,10 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
         Products item = getItem(position);
-        productsList.add(item);
 
         if (item != null) {
 
-            Picasso.get()
-                    .load(item.getProduct_image())
-                    .into(holder.imageView);
+            Glide.with(mCtx).load(item.getProduct_image()).into(holder.imageView);
 
             holder.txtProductName.setText(item.getProduct_name());
             holder.txtProductPrice.setText(item.getProduct_price());
@@ -76,19 +72,29 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
                 }
             };
 
-    static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView txtProductName, txtProductPrice;
         public ImageView imageView;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-
             imageView=(ImageView)itemView.findViewById(R.id.product_image);
             txtProductName=(TextView)itemView.findViewById(R.id.product_name);
             txtProductPrice=(TextView)itemView.findViewById(R.id.product_price);
+
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            Products products = getItem(position);
+
+            Intent intent = new Intent(mCtx, UpdateProductActivity.class);
+            intent.putExtra("Products", products);
+            mCtx.startActivity(intent);
+        }
     }
     
 }
