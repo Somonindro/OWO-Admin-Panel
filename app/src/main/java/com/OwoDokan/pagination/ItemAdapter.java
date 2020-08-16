@@ -3,6 +3,7 @@ package com.OwoDokan.pagination;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,14 @@ import com.OwoDokan.model.Products;
 import com.OwoDokan.owoshop.R;
 import com.squareup.picasso.Picasso;
 
-public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemViewHolder>{
 
     private Context mCtx;
+    public static List<Products> productsList = new ArrayList<>();
+
 
     public ItemAdapter(Context mCtx) {
         super(DIFF_CALLBACK);
@@ -39,6 +45,7 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
 
         Products item = getItem(position);
+        productsList.add(item);
 
         if (item != null) {
 
@@ -69,7 +76,6 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
                 }
             };
 
-
     static class ItemViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtProductName, txtProductPrice;
@@ -82,5 +88,7 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
             txtProductName=(TextView)itemView.findViewById(R.id.product_name);
             txtProductPrice=(TextView)itemView.findViewById(R.id.product_price);
         }
+
     }
+    
 }

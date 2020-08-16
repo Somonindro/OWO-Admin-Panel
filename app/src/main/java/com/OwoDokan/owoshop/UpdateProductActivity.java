@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.OwoDokan.Network.RetrofitClient;
 import com.OwoDokan.model.Products;
+import com.OwoDokan.response.UpdatedProductResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,6 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateProductActivity extends AppCompatActivity {
 
@@ -176,25 +182,44 @@ public class UpdateProductActivity extends AppCompatActivity {
                 products.setProduct_discount(discountUpdate.getText().toString());
                 products.setProduct_quantity(quantity_update.getText().toString());
 
-                reference.child(String.valueOf(products.getProduct_id())).setValue(products).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                Call<UpdatedProductResponse> call = RetrofitClient.getInstance()
+                        .getApi().updateProduct(
+                                products.getProduct_id(),
+                                products.getProduct_image(),
+                                products.getProduct_name(),
+                                products.getProduct_category(),
+                                products.getProduct_price(),
+                                products.getProduct_discount(),
+                                products.getProduct_quantity(),
+                                products.getProduct_description(),
+                                products.getProduct_date(),
+                                products.getProduct_time()
+                        );
 
-                        if(task.isSuccessful())
+
+                call.enqueue(new Callback<UpdatedProductResponse>() {
+                    @Override
+                    public void onResponse(Call<UpdatedProductResponse> call, Response<UpdatedProductResponse> response) {
+                        Toast.makeText(UpdateProductActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+                        if(!response.body().isError())
                         {
-                            Toast.makeText(UpdateProductActivity.this, "Product information updated successfully.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(UpdateProductActivity.this, ProductAvailabilityActivity.class);
                             loadingbar.dismiss();
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
                         }
-
                         else
                         {
-                            Toast.makeText(UpdateProductActivity.this, "Can not update product's data"+task.getException().toString(), Toast.LENGTH_SHORT).show();
                             loadingbar.dismiss();
                         }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<UpdatedProductResponse> call, Throwable t) {
+                        Toast.makeText(UpdateProductActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

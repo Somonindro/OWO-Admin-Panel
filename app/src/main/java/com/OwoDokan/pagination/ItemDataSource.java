@@ -77,11 +77,6 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
 
                         if(response.body() != null){
-                            try {
-                                Thread.sleep(300);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
                             Integer key = params.key + 1 ;
                             callback.onResult(response.body().products, key);
                         }

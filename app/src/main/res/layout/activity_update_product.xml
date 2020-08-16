@@ -230,6 +230,7 @@
                 android:padding="20dp"
                 android:textColorHint="#000000"
                 android:textColor="#000000"
+                android:text="@string/mobile_description"
                 android:textSize="20sp"
                 android:background="@color/white"
                 android:textAlignment="textStart"
