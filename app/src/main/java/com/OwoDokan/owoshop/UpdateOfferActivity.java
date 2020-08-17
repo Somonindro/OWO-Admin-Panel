@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.OwoDokan.model.Offers;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -85,7 +85,7 @@ public class UpdateOfferActivity extends AppCompatActivity {
 
         final com.OwoDokan.model.Offers offers = (Offers) getIntent().getSerializableExtra("Offers");
 
-        Picasso.get().load(offers.getImage()).into(imageUpdate);
+        Glide.with(UpdateOfferActivity.this).load(offers.getImage()).into(imageUpdate);
         nameUpdate.setText(offers.getName());
         startDateUpdate.setText(offers.getStartdate());
         endDateUpdate.setText(offers.getEnddate());

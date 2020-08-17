@@ -16,12 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.OwoDokan.model.Offers;
+import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class AvilableOffersActivity extends AppCompatActivity {
 
@@ -85,7 +85,7 @@ public class AvilableOffersActivity extends AppCompatActivity {
                         holder.txtOfferStartDate.setText("Start Date: "+model.getStartdate());
                         holder.txtOfferEndDate.setText("End Date: "+model.getEnddate());
 
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
+                        Glide.with(AvilableOffersActivity.this).load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
