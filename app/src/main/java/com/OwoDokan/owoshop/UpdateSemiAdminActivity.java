@@ -14,11 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.OwoDokan.model.semi_admins;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 public class UpdateSemiAdminActivity extends AppCompatActivity {
 
@@ -56,7 +56,7 @@ public class UpdateSemiAdminActivity extends AppCompatActivity {
                 getSerializableExtra("Semi Admin");//Getting the required class from the SemiAdminActivity
 
 
-        Picasso.get().load(semiAdmins.getProfileImage()).into(admin_profile_pic);
+        Glide.with(UpdateSemiAdminActivity.this).load(semiAdmins.getProfileImage()).into(admin_profile_pic);
 
         clickedAdminName.setText(semiAdmins.getSemiAdminName());
         clickedAdminMobile.setText(semiAdmins.getPhone());

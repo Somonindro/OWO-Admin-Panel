@@ -14,12 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.OwoDokan.model.semi_admins;
+import com.bumptech.glide.Glide;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -79,7 +79,7 @@ public class SemiAdminActivity extends AppCompatActivity {
                     @Override
                     protected void onBindViewHolder(@NonNull final SemiAdminViewHolder holder, int position, @NonNull final semi_admins model) {
 
-                        Picasso.get().load(model.getProfileImage()).into(holder.profile_pic);
+                        Glide.with(SemiAdminActivity.this).load(model.getProfileImage()).into(holder.profile_pic);
                         holder.Name.setText(model.getSemiAdminName());
                         holder.Phone.setText(model.getPhone());
 
