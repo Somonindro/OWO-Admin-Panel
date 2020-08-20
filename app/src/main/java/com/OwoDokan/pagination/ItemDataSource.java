@@ -30,7 +30,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
 
                         if(response.body() != null){
 
-                            callback.onResult(response.body().products, null, FIRST_PAGE+1);
+                            callback.onResult(response.body().products, null, FIRST_PAGE+1);//(First page +1) is representing next page
 
                         }
                     }
@@ -52,6 +52,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                 .enqueue(new Callback<OwoApiResponse>() {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
+
 
                         if(response.body() != null){
                             Integer key = (params.key > 0) ? params.key - 1 : null;
@@ -76,8 +77,6 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                 .enqueue(new Callback<OwoApiResponse>() {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
-
-                        Log.d("Load Message", "loaded");
 
                         if(response.body() != null){
                             callback.onResult(response.body().products, params.key+1);
