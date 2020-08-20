@@ -21,6 +21,7 @@ public class ItemViewModel extends ViewModel {
         PagedList.Config config =
                 (new PagedList.Config.Builder())
                         .setEnablePlaceholders(false)
+                        .setPageSize(30)
                         .build();
 
         itemPagedList = (new LivePagedListBuilder(itemDataSourceFactory, config)).build();

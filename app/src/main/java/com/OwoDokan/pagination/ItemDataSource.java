@@ -1,5 +1,8 @@
 package com.OwoDokan.pagination;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.paging.PageKeyedDataSource;
 
@@ -27,7 +30,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
 
                         if(response.body() != null){
 
-                            callback.onResult(response.body().products, null, FIRST_PAGE);
+                            callback.onResult(response.body().products, null, FIRST_PAGE+1);
 
                         }
                     }
@@ -74,9 +77,10 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
 
+                        Log.d("Load Message", "loaded");
+
                         if(response.body() != null){
-                            Integer key = params.key + 1 ;
-                            callback.onResult(response.body().products, key);
+                            callback.onResult(response.body().products, params.key+1);
                         }
 
                     }

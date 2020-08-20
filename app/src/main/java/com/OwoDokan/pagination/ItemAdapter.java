@@ -64,7 +64,7 @@ public class ItemAdapter extends PagedListAdapter<Products, ItemAdapter.ItemView
 
                 @Override
                 public boolean areContentsTheSame(Products oldItem, Products newItem) {
-                    return oldItem.equals(newItem);
+                    return true;
                 }
             };
 
