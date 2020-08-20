@@ -78,6 +78,8 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
 
+                        Log.d("Amimul", "Called");
+
                         if(response.body() != null){
                             callback.onResult(response.body().products, params.key+1);
                         }
