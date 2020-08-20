@@ -20,7 +20,7 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xy
     public List<Pair<String,Integer>> product2 = new ArrayList<Pair<String, Integer>>();
     private Context context;
 
-    public AddProductAdapter(List<Pair<String,Integer>> product1,Context context) {
+    public AddProductAdapter(List<Pair<String,Integer>> product1, Context context) {
         this.product1 = product1;
         this.context = context;
         product2.addAll(product1);
@@ -39,17 +39,6 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.xy
 
         holder.imageView.setImageResource(product1.get(position).second);
         holder.textView.setText(product1.get(position).first);
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(context, product1.get(position).first, Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(holder.itemView.getContext(), SingleProductAddActivity.class);
-                intent.putExtra("category",product1.get(position).first);
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });*/
-        //clicklistener is implemented in AdProductActivity class
 
     }
 
