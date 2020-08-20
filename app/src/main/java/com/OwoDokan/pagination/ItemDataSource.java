@@ -53,6 +53,7 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
 
+                        Log.d("Amimul", "Called");
 
                         if(response.body() != null){
                             Integer key = (params.key > 0) ? params.key - 1 : null;
@@ -77,8 +78,6 @@ public class ItemDataSource extends PageKeyedDataSource<Integer, Products> {
                 .enqueue(new Callback<OwoApiResponse>() {
                     @Override
                     public void onResponse(Call<OwoApiResponse> call, Response<OwoApiResponse> response) {
-
-                        Log.d("Amimul", "Called");
 
                         if(response.body() != null){
                             callback.onResult(response.body().products, params.key+1);
