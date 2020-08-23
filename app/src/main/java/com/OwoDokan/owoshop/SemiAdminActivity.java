@@ -43,9 +43,9 @@ public class SemiAdminActivity extends AppCompatActivity {
         back_button_to_home = findViewById(R.id.back_from_semi_admins);
 
         adminsRef= FirebaseDatabase.getInstance().getReference().child("Semi Admins");
+
         adminsList.setHasFixedSize(true);
         adminsList.setLayoutManager(new LinearLayoutManager(this));
-
         adminsList.setVisibility(View.GONE);
 
 
@@ -83,14 +83,14 @@ public class SemiAdminActivity extends AppCompatActivity {
                         holder.Name.setText(model.getSemiAdminName());
                         holder.Phone.setText(model.getPhone());
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(SemiAdminActivity.this, UpdateSemiAdminActivity.class);
                                 intent.putExtra("Semi Admin", model);
                                 startActivity(intent);
                             }
-                        });
+                        });*/
                     }
 
                     @NonNull
@@ -102,7 +102,23 @@ public class SemiAdminActivity extends AppCompatActivity {
                 };
 
 
+
         adminsList.setVisibility(View.VISIBLE);
+        adminsList.addOnItemTouchListener(
+                new RecyclerItemClickListener(SemiAdminActivity.this, adminsList ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(SemiAdminActivity.this, UpdateSemiAdminActivity.class);
+                        intent.putExtra("Semi Admin",adapter.getItem(position));
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                    }
+                })
+        );
         adminsList.setAdapter(adapter);
         adapter.startListening();
 

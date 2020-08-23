@@ -87,7 +87,7 @@ public class AvilableOffersActivity extends AppCompatActivity {
 
                         Glide.with(AvilableOffersActivity.this).load(model.getImage()).into(holder.imageView);
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
@@ -95,7 +95,7 @@ public class AvilableOffersActivity extends AppCompatActivity {
                                 intent.putExtra("Offers",model);
                                 holder.itemView.getContext().startActivity(intent);
                             }
-                        });
+                        });*/
                     }
 
                     @NonNull
@@ -106,6 +106,21 @@ public class AvilableOffersActivity extends AppCompatActivity {
                     }
                 };
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(AvilableOffersActivity.this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(AvilableOffersActivity.this, UpdateOfferActivity.class);
+                        intent.putExtra("Offers",adapter.getItem(position));
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                    }
+                })
+        );
         recyclerView.setAdapter(adapter);
         adapter.startListening();
     }
