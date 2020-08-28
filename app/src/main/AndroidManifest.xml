@@ -46,19 +46,29 @@
         <activity android:name=".ManagementActivity" />
         <activity android:name=".HomeActivity">
 
-        </activity>
-        <activity android:name=".CreateNewAdminActivity" />
-        <activity
-            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Splash_screen">
 
+        </activity>
+
+
+        <activity android:name="com.OwoDokan.dummy.BrowsePicture2">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+
+
+
+        <activity android:name=".CreateNewAdminActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".Splash_screen">
+
 
 
         </activity>

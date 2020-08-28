@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.OwoDokan.model.Products;
-import com.OwoDokan.pagination.ItemAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
