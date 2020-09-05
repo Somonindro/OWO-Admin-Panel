@@ -45,6 +45,7 @@
         <item>Users</item>
         <item>Message</item>
         <item>Cloud Messaging</item>
+        <item>Add Qupon</item>
     </string-array>
 
     <string-array name="productname">

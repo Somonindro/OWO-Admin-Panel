@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SearchedProducts"></activity>
+        <activity android:name=".QuponActivity"></activity>
+        <activity android:name=".SearchedProducts" />
         <activity android:name=".CloudMessagingActivity" />
         <activity android:name=".preview_product" />
 
@@ -33,7 +34,7 @@
         <activity android:name=".UpdateOfferActivity" />
         <activity android:name=".AvilableOffersActivity" />
         <activity android:name=".UpdateProductActivity" />
-        <activity android:name=".ProductAvailabilityActivity"></activity>
+        <activity android:name=".ProductAvailabilityActivity" />
         <activity android:name=".SingleProductAddActivity" />
         <activity android:name=".AddProductAdapter" />
         <activity android:name=".AddProductActivity" />
@@ -44,34 +45,18 @@
         <activity android:name=".SemiAdminActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ManagementActivity" />
-        <activity android:name=".HomeActivity">
-
-
-        </activity>
-
-
-        <activity android:name="com.OwoDokan.dummy.BrowsePicture2">
-
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
-
-
-
         <activity android:name=".CreateNewAdminActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
-        <activity android:name=".Splash_screen">
-
-
-
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
 
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>

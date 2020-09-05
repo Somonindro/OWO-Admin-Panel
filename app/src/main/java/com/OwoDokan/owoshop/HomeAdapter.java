@@ -168,6 +168,11 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.xyz>{
                     Intent intent=new Intent(holder.itemView.getContext(), CloudMessagingActivity.class);
                     holder.itemView.getContext().startActivity(intent);
                 }
+                else if (position==9)
+                {
+                    Intent intent=new Intent(holder.itemView.getContext(), QuponActivity.class);
+                    holder.itemView.getContext().startActivity(intent);
+                }
 
             }
         });
