@@ -72,12 +72,10 @@ public class QuponActivity extends AppCompatActivity {
 
         quponRandomKey=saveCurrentDate+saveCurrentTime;
 
-        final DatabaseReference RootRef=FirebaseDatabase.getInstance().getReference().child("Qupon");
+        final DatabaseReference RootRef = FirebaseDatabase.getInstance().getReference().child("Qupon");
         HashMap<String,Object> quponMap=new HashMap<>();
         quponMap.put("qupon_code",code);
         quponMap.put("qupon_discount",discount);
-        quponMap.put("date",saveCurrentDate);
-        quponMap.put("time",saveCurrentTime);
 
         RootRef.child(quponRandomKey).updateChildren(quponMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
