@@ -1,6 +1,8 @@
 package com.OwoDokan;
 
-public class LatLng {
+import java.io.Serializable;
+
+public class LatLng implements Serializable {
     private Double latitude;
     private Double longitude;
 

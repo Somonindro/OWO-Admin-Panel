@@ -77,7 +77,7 @@ public class ShopApprovalActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(ShopApprovalActivity.this, PendingShopDetails.class);
-                        intent.putExtra("PendingShop", (Parcelable) model);
+                        intent.putExtra("PendingShop", model);
                         startActivity(intent);
                     }
                 });

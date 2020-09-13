@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PendingShop{
+public class PendingShop implements Serializable {
 
     private String shop_name, shop_address, shop_owner_name, shop_service_mobile, shop_owner_mobile,
             shop_image_uri, shop_keeper_nid_front_uri, trade_license_uri;
