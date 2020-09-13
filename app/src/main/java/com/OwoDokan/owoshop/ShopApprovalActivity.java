@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,12 +76,9 @@ public class ShopApprovalActivity extends AppCompatActivity {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*
-                        Intent intent = new Intent(ShopApprovalActivity.this, ProductDetailsActivity.class);//For giving product description to the user when clicks on a cart item
-                        intent.putExtra("PendingShop", model);
+                        Intent intent = new Intent(ShopApprovalActivity.this, PendingShopDetails.class);
+                        intent.putExtra("PendingShop", (Parcelable) model);
                         startActivity(intent);
-
-                         */
                     }
                 });
             }
