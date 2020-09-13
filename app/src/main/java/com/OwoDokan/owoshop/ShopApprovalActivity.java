@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.OwoDokan.model.PendingShop;
 import com.OwoDokan.viewHolder.PendingShopViewHolder;
+import com.agrawalsuneet.dotsloader.loaders.AllianceLoader;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -29,12 +30,14 @@ public class ShopApprovalActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+    private AllianceLoader loader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_approval);
         recyclerView=findViewById(R.id.shop_approval_recyclerviewid);
+        loader = findViewById(R.id.loader);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
@@ -44,6 +47,8 @@ public class ShopApprovalActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        loader.setVisibility(View.VISIBLE);
 
         final DatabaseReference pendingShopList = FirebaseDatabase.getInstance().getReference();
 
@@ -60,9 +65,11 @@ public class ShopApprovalActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull final PendingShopViewHolder holder, int position, @NonNull final PendingShop model) {
 
+                loader.setVisibility(View.GONE);
+
                 Glide.with(ShopApprovalActivity.this).load(model.getShop_image_uri()).into(holder.shop_image);
 
-                holder.shop_name.setText(model.getShop_owner_name());
+                holder.shop_name.setText(model.getShop_name());
                 holder.mobile_number.setText(model.getShop_owner_mobile());
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +77,7 @@ public class ShopApprovalActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         /*
                         Intent intent = new Intent(ShopApprovalActivity.this, ProductDetailsActivity.class);//For giving product description to the user when clicks on a cart item
-                        intent.putExtra("Products", model);
+                        intent.putExtra("PendingShop", model);
                         startActivity(intent);
 
                          */
