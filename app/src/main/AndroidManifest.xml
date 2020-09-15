@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PendingShopDetails"></activity>
+        <activity android:name=".AdminUserProductsActivity"></activity>
+        <activity android:name=".AdminNewOrdersActivity" />
+        <activity android:name=".PendingShopDetails" />
         <activity android:name=".QuponActivity" />
         <activity android:name=".SearchedProducts" />
         <activity android:name=".CloudMessagingActivity" />
