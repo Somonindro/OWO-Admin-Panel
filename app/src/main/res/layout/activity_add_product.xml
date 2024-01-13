@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddProductActivity">
+    tools:context="com.owoSuperAdmin.productsManagement.addProduct.AddProductActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/blue"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
                 android:id="@+id/heading_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Category"
+                android:text="@string/categories"
                 android:textColor="#FFFFFF"
                 android:layout_gravity="center"
                 android:textStyle="bold"
@@ -58,9 +58,9 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/add_product_recyclerview_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/add_product_recyclerview_id"
         >
 
     </androidx.recyclerview.widget.RecyclerView>

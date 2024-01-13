@@ -4,37 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PendingShopDetails">
+    tools:context="com.owoSuperAdmin.shopManagement.approveShop.ApproveAPendingShop">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/scroller"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="2dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:layout_alignParentTop="true">
+        android:background="@color/blue"
+        >
 
-        <TextView
-            android:id="@+id/shop_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ABCD Pharmacy"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
-    </com.google.android.material.appbar.AppBarLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_arrow_back_24_white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/back_button" />
+
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shop_information"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@+id/backButton"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scroll"
-        android:layout_below="@+id/scroller"
+        android:layout_below="@+id/toolbar"
         >
 
         <LinearLayout
-            android:padding="10dp"
+            android:padding="5dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -45,13 +63,12 @@
                 android:layout_height="200dp"
                 android:src="@drawable/create_shop"
                 android:scaleType="centerCrop"
-                />
-
+                android:contentDescription="@string/shop_image" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shopkeeper Personal Information"
+                android:text="@string/shopkeeper_personal_information"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -64,7 +81,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Owner Name:"
+                android:text="@string/shop_owner_name"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="15dp"
@@ -88,7 +105,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Owner Mobile:"
+                android:text="@string/shop_owner_mobile"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -112,7 +129,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Owner NID:"
+                android:text="@string/shop_owner_nid"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -129,13 +146,13 @@
                 android:scaleType="centerCrop"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                />
+                android:contentDescription="@string/shop_keeper_nid_front_image" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Information"
+                android:text="@string/shop_information"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -144,12 +161,10 @@
                 android:textSize="18sp"
                 android:layout_marginStart="5dp"/>
 
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Address:"
+                android:text="@string/shop_address"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -174,14 +189,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Shop Service Mobile:"
+                android:text="@string/shop_service_mobile"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:textSize="18sp"
                 android:layout_marginStart="5dp"/>
-
 
             <TextView
                 android:id="@+id/shop_service_mobile"
@@ -195,12 +209,10 @@
                 android:drawablePadding="8dp"
                 />
 
-
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Requested Categories:"
+                android:text="@string/requested_categories"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginTop="15dp"
@@ -215,60 +227,22 @@
                 android:layout_marginBottom="20dp"
                 android:padding="5dp"
                 >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    >
 
-                    <CheckBox
-                        android:id="@+id/category_1_check_box"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/requested_category_1"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"/>
 
-                    <TextView
-                        android:id="@+id/requested_category_1"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/requested_category_2"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"/>
 
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/requested_category_3"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"/>
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    >
-
-                    <CheckBox
-                        android:id="@+id/category_2_check_box"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/requested_category_2"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    >
-
-                    <CheckBox
-                        android:id="@+id/category_3_check_box"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/requested_category_3"
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
             </LinearLayout>
 
             <ImageView
@@ -279,53 +253,17 @@
                 android:scaleType="centerCrop"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                />
-
-            <Button
-                android:id="@+id/shop_address_in_map"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="15dp"
-                android:text="See In Map"
-                android:maxLines="1"
-                android:background="@drawable/buttons_blue"
-                android:textColor="@color/white"
-                android:drawableEnd="@drawable/ic_baseline_place_24"
-                android:drawableTint="@color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                />
-
-            <Button
-                android:id="@+id/approve_shop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Approve Shop"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/buttons_blue"
-                android:textSize="20sp"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                />
+                android:contentDescription="@string/shop_keeper_trade_license_image" />
         </LinearLayout>
+
     </ScrollView>
 
-    <com.agrawalsuneet.dotsloader.loaders.AllianceLoader
-        android:id="@+id/alliance_loader"
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:alliance_animDuration="500"
-        app:alliance_distanceMultiplier="4"
-        app:alliance_dotsRadius="20dp"
-        app:alliance_firstDotsColor="@color/red"
-        app:alliance_secondDotsColor="@color/green"
-        app:alliance_strokeWidth="8dp"
-        app:alliance_thirdDotsColor="@color/blue"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:indeterminateTint="@color/blue"
+        android:visibility="gone"/>
 
 </RelativeLayout>

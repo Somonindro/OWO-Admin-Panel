@@ -1,2 +1,2 @@
-rootProject.name='OWO Shop'
 include ':app'
+rootProject.name = "OwoSuperAdmin"
